@@ -1,7 +1,8 @@
 def base(base_number):
     def wrap(fn):
         def inner(x, y):
-            return fn(x, y) + base_number
+
+            return fn(x, y) + base_number  # 여기서 fn이 아래 mysum2임
 
         return inner
 
