@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+<h1>최열의 프로필</h1>
+<h2>좋아하는 음식</h2>
+<ul>
+    {% for food in like_foods %}
+    <li>{{ food }}</li>
+    {% endfor %}
+</ul>
+<h3>좋아하는 운동</h3>
+<ul>
+    <li>배드민턴</li>
+    <li>풋살</li>
+</ul>
+{% endblock %}
