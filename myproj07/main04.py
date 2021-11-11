@@ -1,22 +1,37 @@
-s = "안녕하세요."
+"""
+리스트에 랭크된 가수는 총 몇 팀인가요? (중복 제거산 가수명 리스트의 크기)
+"""
 
-# # idx = 0
-# # for ch in s:
-# #     print(ch)
-# #     idx += 1
-# # 같은 동작 enumerate 가 index를 자동으로 뽑아줌
-# 내가 원하는 번호로부터 1씩 증가하는 번호를 얻고자 > enumerate
-# for idx, ch in enumerate(s, 1):
-#     print(idx, ch)
+import pandas as pd
 
+df = pd.read_csv("https://bit.ly/3nsLDXy")
+song_list = list(df.T.to_dict().values())
 
-mylist = [
-    [1, 2],
-    [3, 4],
-    [5, 6],
-    [7, 8],
-    [9, 10],
-]
+# 1 리스트에 if, not in , append 써서 중복 제거하는 방법
 
-for idx, (x, y) in enumerate(mylist):
-    print(x, y)
+artist_list = []
+for song_dict in song_list:
+    artist: str = song_dict["artist"]
+    if artist not in artist_list:
+        artist_list.append(artist)
+print(len(artist_list))
+
+# 2 set을 써서 중복 제거하는 방법
+
+artist_set = set()
+for song_dict in song_list:
+    artist: str = song_dict["artist"]
+    artist_set.add(artist)
+print(len(artist_set))
+
+# 3
+
+artist_set = set([song_dict["artist"] for song_dict in song_list])
+
+print(len(artist_set))
+
+# 4 : Set Comprehension
+
+artist_set = {song_dict["artist"] for song_dict in song_list}
+
+print(len(artist_set))
