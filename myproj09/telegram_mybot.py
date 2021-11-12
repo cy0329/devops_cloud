@@ -12,40 +12,79 @@ token = TELEGRAM_TOKEN
 updater = Updater(token=token, use_context=True)
 dispatcher = updater.dispatcher
 
+
 def start(update, context):
     """
     대화방이 처음 열리면, 자동으로 호출되는 함수.
     """
-    context.bot.send_message(
-        chat_id=update.effective_chat.id,
-        text="왜 또 뭐 왜")
+    context.bot.send_message(chat_id=update.effective_chat.id, text="왜 또 뭐 왜")
+
 
 def echo(update, context):
     received_text: str = update.message.text
-    # received_num: list = update.message.text
-    if tasks.ya.check_available(received_text):
-        response_text = tasks.ya.make_response(received_text)
-    elif tasks.naver_search.check_available(received_text):
-        response_text = tasks.naver_search.make_response(received_text)
-    elif tasks.weather.check_available(received_text):
-        response_text = tasks.weather.make_response(received_text)
+
+    supported_tasks = [
+        tasks.get_current_lotto_numbers,
+        tasks.ya,
+        tasks.naver_search,
+        tasks.time,
+        tasks.WAYD,
+        tasks.calsel,
+        tasks.mulcal,
+        tasks.mulcal2,
+        tasks.pluscal,
+        tasks.pluscal2,
+        tasks.weather,
+    ]
+
+    for task in supported_tasks:
+        if task.check_available(received_text):
+            response_text = task.make_response(received_text)
+            break
+    else:
+        response_text = "뭐라는겨"
+
+    # tasks.get_current_lotto_numbers.check_available()
+    # tasks.get_current_lotto_numbers.make_response()
+    #
+    #
+    # if tasks.ya.check_available(received_text):
+    #     response_text = tasks.ya.make_response(received_text)
+    #
+    # elif tasks.naver_search.check_available(received_text):
+    #     response_text = tasks.naver_search.make_response(received_text)
+    #
+    # elif tasks.weather.check_available(received_text):
+    #     response_text = tasks.weather.make_response(received_text)
+    #
     # elif tasks.calsel.check_available(received_text):
     #     response_text = tasks.calsel.make_response(received_text)
+    #
     # elif tasks.pluscal.check_available(received_text):
     #     response_text = tasks.pluscal.make_response(received_text)
-    # elif tasks.pluscal2.check_available(received_num):
-    #     response_text = tasks.pluscal2.make_response(received_num)
-    elif tasks.WAYD.check_available(received_text):
-        response_text = tasks.WAYD.make_response(received_text)
-    elif tasks.time.check_available(received_text):
-        response_text = tasks.time.time_sleep(received_text)
-    else:
-        response_text = "뭐라는겨~"
+    #
+    # elif tasks.pluscal2.check_available(received_text):
+    #     response_text = tasks.pluscal2.make_response(received_text)
+    #
+    # elif tasks.mulcal.check_available(received_text):
+    #     response_text = tasks.mulcal.make_response(received_text)
+    #
+    # elif tasks.pluscal2.check_available(received_text):
+    #     response_text = tasks.pluscal2.make_response(received_text)
+    #
+    # elif tasks.WAYD.check_available(received_text):
+    #     response_text = tasks.WAYD.make_response(received_text)
+    #
+    # elif tasks.time.check_available(received_text):
+    #     response_text = tasks.time.time_sleep(received_text)
+    #
+    # else:
+    #     response_text = "뭐라는겨~"
 
-# def handler(update, context):
-#     user_text = update.message.text
-#     if "계산" in user_text:
-#         #계산 기능은 실패
+    # def handler(update, context):
+    #     user_text = update.message.text
+    #     if "계산" in user_text:
+    #         #계산 기능은 실패
     # if received_text == "야":
     #     reply_text = "왜"
     # elif received_text.startswith("네이버 검색:"):
@@ -64,6 +103,7 @@ def echo(update, context):
         chat_id=update.effective_chat.id,
         text=response_text)
 
+
 start_handler = CommandHandler("start", start)
 dispatcher.add_handler(start_handler)
 
@@ -73,7 +113,10 @@ echo_handler = MessageHandler(
 )
 dispatcher.add_handler(echo_handler)
 
+print("Started bot ...")
+
 updater.start_polling()
+updater.idle()
 
 
 # bot = telegram.Bot(token)

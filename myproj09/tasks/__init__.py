@@ -4,5 +4,8 @@ from . import weather
 from . import calsel
 from . import pluscal
 from . import pluscal2
+from . import mulcal
+from . import mulcal2
 from . import time
 from . import WAYD
+from . import get_current_lotto_numbers

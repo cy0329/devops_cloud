@@ -8,7 +8,8 @@ def check_available(received_text: str) -> bool:
 def make_response(received_text: str) -> str:
     query = "날씨"
     response_text = weather_search(query)
-    return "옜다.\n" + response_text
+    return f"""옜다.
+    {response_text}"""
 
 
 def weather_search(query):
