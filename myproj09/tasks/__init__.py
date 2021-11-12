@@ -9,3 +9,9 @@ from . import mulcal2
 from . import time
 from . import WAYD
 from . import get_current_lotto_numbers
+from . import subcal
+from . import subcal2
+from . import divcal
+from . import divcal2
+from . import thanks
+from . import helps

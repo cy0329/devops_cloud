@@ -35,6 +35,12 @@ def echo(update, context):
         tasks.pluscal,
         tasks.pluscal2,
         tasks.weather,
+        tasks.subcal,
+        tasks.subcal2,
+        tasks.divcal,
+        tasks.divcal2,
+        tasks.thanks,
+        tasks.helps,
     ]
 
     for task in supported_tasks:
