@@ -1,0 +1,21 @@
+{% extends "mintonplace/layout.html" %}
+
+{% block content %}
+    <h2>{{ mintongym.place_name }}</h2>
+
+    {% if mtgym.photo %}
+    <img src="{{ mtgym.photo.url }}" style="max-width: 100%;" />
+    {% endif %}
+
+    {{ mtgym.place_name|linebreaks }}
+    {{ mtgym.address|linebreaks }}
+    {{ mtgym.contact|linebreaks }}
+    {{ mtgym.parking|linebreaks }}
+    {{ mtgym.starttime|linebreaks }}
+    {{ mtgym.endtime|linebreaks }}
+    {{ mtgym.explain|linebreaks }}
+
+    <hr />
+    {{ mintongym.updated_at }}
+
+{% endblock %}

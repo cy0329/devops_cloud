@@ -1,0 +1,19 @@
+{% extends "mintonplace/layout.html" %}
+
+{% block content %}
+    <form action="" method="get">
+        <input type="text" name="q" value="{{ request.GET.q }}" />
+        <input type="submit" value="검색" />
+    </form>
+
+    <ul>
+        {% for mintongym in mtplace_list %}
+        <li>
+            <a href="/mintonplace/{{ mintongym.pk }}/">
+                {{ mintongym.place_name }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
