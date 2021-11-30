@@ -1,3 +1,4 @@
 from django.contrib import admin
+from mintonplace.models import mintongym
 
-# Register your models here.
+admin.site.register(mintongym)
