@@ -37,13 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.staticfiles',
     'skiresort',
 ]
 
 if DEBUG:
     INSTALLED_APPS += [
-        "debug_toolbar",
+        'debug_toolbar',
     ]
 
 MIDDLEWARE = [
@@ -58,7 +57,7 @@ MIDDLEWARE = [
 
 if DEBUG:
     MIDDLEWARE = [
-        "debug_toolbar.middleware.DebugToolbarMiddleware",
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
     ] + MIDDLEWARE
 
 ROOT_URLCONF = 'myhomework13.urls'
