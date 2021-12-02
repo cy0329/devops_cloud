@@ -11,7 +11,7 @@ class Video(models.Model):
     thumbnail_file = models.ImageField()
     thumbnail_file_thumb = ImageSpecField(
         source="thumbnail_file",
-        processors=[ResizeToFill(100, 50)],
+        processors=[ResizeToFill(800, 400)],
         format="JPEG",
         options={"quality": 60},
     )
