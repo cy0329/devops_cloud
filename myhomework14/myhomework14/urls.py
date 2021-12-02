@@ -17,15 +17,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from CYtube.views import index
+from CYtube.views import index, video_detail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('CYtube/', index)
+    path('CYtube/', index),
+    path('CYtube/<int:pk>/', video_detail),
 ]
 
 urlpatterns += static(settings.MEDIA_URL,
-                      document_root='MEDIA_ROOT')
+                      document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     import debug_toolbar
