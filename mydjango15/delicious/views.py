@@ -1,5 +1,8 @@
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView
+
+from delicious.forms import ShopForm
 from delicious.models import Shop
 
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -16,6 +19,7 @@ def shop_list(request: HttpRequest) -> HttpResponse:
     }
     return render(request, "delicious/shop_list.html", context_data)
 
+
 def shop_detail(request: HttpRequest, pk: int) -> HttpResponse:
     shop = Shop.objects.get(pk=pk)
     # template_name = "delicious/shop_detail.html"
@@ -24,3 +28,31 @@ def shop_detail(request: HttpRequest, pk: int) -> HttpResponse:
     }
     return render(request, "delicious/shop_detail.html", context_data)
 
+
+def shop_new_1(request: HttpRequest) -> HttpResponse:
+    if request.method == "GET":   # "GET", "POST"
+        return render(request, "delicious/shop_form_1.html", {})
+    else:  # "POST"
+        name = request.POST["name"]
+        description = request.POST["description"]
+        address = request.POST["address"]
+        latitude = request.POST["latitude"]
+        longitude = request.POST["longitude"]
+        telephone = request.POST["telephone"]
+        # TODO: 유효성 검사
+        Shop.objects.create(
+            name=name,
+            description=description,
+            address=address,
+            latitude=latitude,
+            longitude=longitude,
+            telephone=telephone,
+        )
+        return redirect("/delicious/")   # 장고 스타일 아님
+
+
+shop_new = CreateView.as_view(
+    model=Shop,
+    form_class=ShopForm,
+    success_url="/delicious/",
+)
