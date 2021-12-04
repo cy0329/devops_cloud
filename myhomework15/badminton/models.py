@@ -13,4 +13,3 @@ class Minton(models.Model):
     parking = models.BooleanField(default=False, verbose_name='주차장 보유')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
