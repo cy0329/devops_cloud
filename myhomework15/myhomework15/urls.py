@@ -1,13 +1,14 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from badminton.views import minton_list, minton_detail
+from badminton.views import minton_list, minton_detail, minton_new_1
 from myhomework15 import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('badminton/', minton_list),
     path('badminton/<int:pk>', minton_detail),
+    path('badminton/new1', minton_new_1),
 ]
 
 if settings.DEBUG:
