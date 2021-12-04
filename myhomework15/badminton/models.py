@@ -1,7 +1,7 @@
 from django.db import models
 
 class Minton(models.Model):
-    name = models.CharField(max_length=50, verbose_name="체육관명")
+    name = models.CharField(max_length=50, db_index=True, verbose_name="체육관명")
     address = models.CharField(max_length=100, verbose_name="주소", blank=True)
     telephone = models.CharField(max_length=13, verbose_name="연락처", blank=True)
     description = models.TextField(verbose_name="설명")
