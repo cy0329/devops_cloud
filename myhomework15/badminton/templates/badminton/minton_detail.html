@@ -3,7 +3,7 @@
     <h2>{{ minton.name }}</h2>
     <ul>
         <li>주소: {{ minton.address }}</li>
-        <li>TEL: {{ minton.telephone }}</li>
+        <li>TEL: <a href="tel:{{ minton.telephone }}">{{ minton.telephone }}</a></li>
     </ul>
     {{ minton.photo }}
     {{ minton.description|linebreaks }}
