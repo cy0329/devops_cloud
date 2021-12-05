@@ -1,7 +1,6 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import CreateView
-
 from badminton.forms import MintonForm
 from badminton.models import Minton
 

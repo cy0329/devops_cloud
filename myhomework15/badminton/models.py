@@ -8,7 +8,7 @@ class Minton(models.Model):
         RegexValidator(r"^\d{3,4}-?\d{3,4}-?\d{4}$",
                        message="전화번호를 입력해주세요."),
     ])
-    photo = models.ImageField(blank=True, verbose_name='사진')
+    photo = models.ImageField(blank=True, null=True, verbose_name='사진')
     description = models.TextField(verbose_name='설명')
     parking = models.BooleanField(default=False, verbose_name='주차장 보유')
     created_at = models.DateTimeField(auto_now_add=True)

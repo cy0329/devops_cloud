@@ -17,8 +17,21 @@
             </tr>
             <tr>
                 <td>
-                    <image src="{{ minton.photo.url }}" alter="{{ minton.name }}"></image>
+                    {% if minton.photo %}
+                        <image src="{{ minton.photo.url }}" alter="{{ minton.name }}"></image>
+                    {% else %}
+                        <li>사진 없음</li>
+                    {% endif %}
                     {{ minton.description|linebreaks }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% if minton.parking is True %}
+                        주차장 있음
+                    {% else %}
+                        주차장 없음
+                    {% endif %}
                 </td>
             </tr>
         </tbody>
