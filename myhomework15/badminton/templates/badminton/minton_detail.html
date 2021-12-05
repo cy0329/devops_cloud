@@ -1,12 +1,29 @@
 {% extends 'badminton/layout.html' %}
 {% block content %}
-    <h2>{{ minton.name }}</h2>
-    <ul>
-        <li>주소: {{ minton.address }}</li>
-        <li>TEL: <a href="tel:{{ minton.telephone }}">{{ minton.telephone }}</a></li>
-    </ul>
-    {{ minton.photo }}
-    {{ minton.description|linebreaks }}
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>{{ minton.name }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li>주소: {{ minton.address }}</li>
+                        <li>TEL: <a href="tel:{{ minton.telephone }}">{{ minton.telephone }}</a></li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <image src="{{ minton.photo.url }}" alter="{{ minton.name }}"></image>
+                    {{ minton.description|linebreaks }}
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
     <hr/>
     <a href="/badminton/" class="btn btn-primary">목록으로</a>
 
