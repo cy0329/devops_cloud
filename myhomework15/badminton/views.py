@@ -1,8 +1,11 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from badminton.forms import MintonForm
 from badminton.models import Minton
+
+# CBV 방식으로 해보기
+# list = ListView.as_view(model=Minton, template_name="badminton/minton_list.html")
 
 
 def minton_list(request: HttpRequest) -> HttpResponse:
