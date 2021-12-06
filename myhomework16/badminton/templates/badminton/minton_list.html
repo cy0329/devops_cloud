@@ -1,0 +1,27 @@
+{% extends 'badminton/layout.html' %}
+{% block bad %}
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>민턴장 이름</th>
+                <th>전화번호</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for minton in minton_list %}
+            <tr>
+                <td>
+                    <a href="/badminton/{{ minton.pk }}">
+                        {{ minton.name }}
+                    </a>
+                </td>
+                <td>
+                    <a href="tel:{{ minton.telephone }}">
+                        {{ minton.telephone }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
