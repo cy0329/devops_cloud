@@ -1,3 +1,4 @@
+from django.db.models import query
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from badminton.models import Minton
@@ -5,6 +6,10 @@ from badminton.models import Minton
 
 def minton_list(request: HttpRequest) -> HttpResponse:
     qs = Minton.objects.all()
+    query = request.GET.get("query", "")
+    if query:
+        qs = qs.filter(name__icontains=query)
+
     template_name = 'badminton/minton_list.html'
     context_data = {
         'minton_list': qs,
