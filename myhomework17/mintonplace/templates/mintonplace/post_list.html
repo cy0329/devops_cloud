@@ -1,0 +1,28 @@
+{% extends 'mintonplace/layout.html' %}
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>민턴장 이름</th>
+                <th>전화번호</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in post_list %}
+            <tr>
+                <td>
+                    <a href="/badminton/{{ post.pk }}">
+                        {{ post.name }}
+                    </a>
+                </td>
+                <td>
+                    <a href="tel:{{ post.telephone }}">
+                        {{ post.telephone }}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
