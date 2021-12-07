@@ -21,6 +21,7 @@ class Post(TimestampedModel):  # 상속 받아서 정의 --> 코드 줄이기
         verbose_name_plural = "포스팅 목록"
 
 class Comment(TimestampedModel):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)  # on_delete : 삭제 정책 -> CASCADE : Post 삭제시 포함된 Comment도 삭제
     author_name = models.CharField(max_length=20)
     message = models.TextField()
 
@@ -37,3 +38,4 @@ class Tag(TimestampedModel):
     class Meta:
         verbose_name = "태그"
         verbose_name_plural = "태그 목록"
+
