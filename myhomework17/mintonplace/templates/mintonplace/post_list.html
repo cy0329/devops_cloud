@@ -11,7 +11,7 @@
             {% for post in post_list %}
             <tr>
                 <td>
-                    <a href="/badminton/{{ post.pk }}">
+                    <a href="{% url 'mintonplace:post_detail' post.pk %}">
                         {{ post.name }}
                     </a>
                 </td>
