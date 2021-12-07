@@ -21,7 +21,10 @@ class Post(TimestampedModel):  # 상속 받아서 정의 --> 코드 줄이기
         verbose_name_plural = "포스팅 목록"
 
 class Comment(TimestampedModel):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)  # on_delete : 삭제 정책 -> CASCADE : Post 삭제시 포함된 Comment도 삭제
+    # 외래키 : 정수값
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    # on_delete : 삭제 정책 -> CASCADE : Post 삭제시 포함된 Comment도 삭제
+    # post_id라는 필드를 자동으로 생성(by django)
     author_name = models.CharField(max_length=20)
     message = models.TextField()
 
