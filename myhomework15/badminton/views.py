@@ -10,8 +10,8 @@ from badminton.models import Minton
 
 def minton_list(request: HttpRequest) -> HttpResponse:
     qs = Minton.objects.all()
-
     query = request.GET.get("query", "")
+
     if query:
         qs = qs.filter(name__icontains=query)
 

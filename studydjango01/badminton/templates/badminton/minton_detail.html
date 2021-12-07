@@ -1,0 +1,36 @@
+{% extends 'badminton/layout.html' %}
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead>
+            <th>{{ minton.name }}</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <li>{{ minton.address }}</li>
+                    <li><a href="tel:{{ minton.teleophone }}">{{ minton.telephone }}</a></li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {% if minton.photo %}
+                    <image src="{{ minton.photo.url }}" alt="{{ minton.name }}"></image>
+                    {% else %}
+                    <li>사진 없음</li>
+                    {% endif %}
+                    {{ minton.description|linebreaks }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                {% if minton.parking == True %}
+                주차장 있음
+                {% else %}
+                주차장 없음
+                {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/badminton/" class="btn btn-primary">목록으로</a>
+{% endblock %}

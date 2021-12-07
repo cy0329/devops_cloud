@@ -1,0 +1,34 @@
+{% extends "badminton/layout.html" %}
+{% block content %}
+    <form action="" method="get">
+        <input type="text" name="query" value="{{ request.GET.query }}">
+        <input type="submit" value="검색">
+    </form>
+    <table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>telephone</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for minton in minton_list %}
+        <tr>
+            <td>
+                <a href="/badminton/{{ minton.pk }}">
+                    {{ minton.name }}
+                </a>
+            </td>
+            <td>
+                <a href="tel:{{ minton.telephone }}">
+                    {{ minton.telephone }}
+                </a>
+
+            </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+    </table>
+
+{% endblock %}
