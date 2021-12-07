@@ -3,6 +3,14 @@ from django.shortcuts import render
 
 from mintonplace.models import Post
 
+def tag_detail(request: HttpRequest, tag_name: str) -> HttpResponse:
+    qs = Post.objects.all()
+    qs = qs.filter(tag_set__name=tag_name)
+    return render(request, 'mintonplace/tag_detail.html', {
+        'tag_name': tag_name,
+        'post_list': qs,
+    })
+
 
 def post_list(request: HttpRequest) -> HttpResponse:
     qs = Post.objects.all()

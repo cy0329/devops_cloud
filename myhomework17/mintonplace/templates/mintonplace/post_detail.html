@@ -5,6 +5,15 @@
         <tr>
             <th><h1>{{ post.name }}</h1></th>
         </tr>
+        <tr>
+            <td>
+                태그:
+                {% for tag in tag_list %}
+                    <a href={% url "mintonplace:tag_detail" tag.name %}>{{ tag.name }}</a>
+                {% endfor %}
+            </td>
+        </tr>
+
         </thead>
         <tbody>
         <tr>
@@ -51,5 +60,5 @@
         </tbody>
 
     </table>
-
+    <a href="/mintonplace/" class="btn btn-primary">목록으로</a>
 {% endblock %}
