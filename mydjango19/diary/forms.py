@@ -15,6 +15,17 @@ from diary.models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = "__all__"
-    # 장고가 알아서 Post 모델에 있는 필드들을 다 복사해서 가져와 줌
+        # fields = "__all__"
+        # 장고가 알아서 Post 모델에 있는 필드들을 다 복사해서 가져와 줌
+
+        # 유저로부터 입력받을 필드 이름을 나열
+        fields = [
+            "author_name",
+            "title",
+            "content",
+            "photo",
+            "tag_set",
+        ]
+        # 이 필드에 대해서만 html을 보여주고, 유효성 검사를 하고, db에 저장함
+
 
