@@ -12,6 +12,7 @@ class Post(TimestampedModel):  # 상속 받아서 정의 --> 코드 줄이기
     content = models.TextField()
     photo = models.ImageField(upload_to="diary/post/%Y/%m/%d")
     tag_set = models.ManyToManyField("Tag", blank=True)
+    ip = models.GenericIPAddressField()
     # Tag가 뒤에 있기 때문에 문자열로 넣어주면 장고가 알아서 현재 앱에서 찾아서 관계를 맺어줌
     def __str__(self) -> str:
         return self.title
