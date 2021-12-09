@@ -2,6 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from diary.models import Post
 
+
 def tag_detail(request: HttpRequest, tag_name: str) -> HttpResponse:
     qs = Post.objects.all()
     qs = qs.filter(tag_set__name=tag_name)
@@ -13,14 +14,15 @@ def tag_detail(request: HttpRequest, tag_name: str) -> HttpResponse:
 
 def post_list(request: HttpRequest) -> HttpResponse:
     qs = Post.objects.all()
-
+    # 여기부터
     query = request.GET.get("query", "")
     if query:
         qs = qs.filter(title__icontains=query)
-
+    # 여기까지 검색기능
     return render(request, "diary/post_list.html", {
         "post_list": qs,
     })
+
 
 def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
     post = Post.objects.get(pk=pk)
