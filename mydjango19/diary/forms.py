@@ -9,6 +9,8 @@ from django.core.validators import RegexValidator
 #             RegexValidator(r"^\d{3,4}-?\d{3,4}-?\d{4}$", message="휴대폰 번호를 입력해주세요."),
 #         ]
 #     )
+## 폼 필드를 직접 지정해줄때는 위의 방식
+
 from diary.models import Post
 
 
@@ -27,5 +29,3 @@ class PostForm(forms.ModelForm):
             "tag_set",
         ]
         # 이 필드에 대해서만 html을 보여주고, 유효성 검사를 하고, db에 저장함
-
-
