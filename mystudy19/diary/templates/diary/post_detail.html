@@ -28,5 +28,7 @@
     <a href="{% url "diary:post_list" %}" class="btn btn-primary">
         목록으로
     </a>
-
+    <a href="{% url 'diary:post_edit' post.pk %}" class="btn btn-warning">
+        수정하기
+    </a>
 {% endblock %}

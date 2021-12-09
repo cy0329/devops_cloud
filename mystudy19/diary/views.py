@@ -42,16 +42,27 @@ def post_new(request: HttpRequest) -> HttpResponse:
     # print("request.GET :", request.GET)
     # print("request.POST :", request.POST)
     # print("request.FILES :", request.FILES)
-    if request.method == "GET":
-        form = PostForm()
-    else:
+    if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            print("유효성 검사를 통과했습니다. :", form.cleaned_data)
             form.save()
             return redirect("diary:post_list")
-        else:
-            pass
+    else:
+        form = PostForm()
     return render(request, 'diary/post_form.html', {
         'form': form,
     })
+
+def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
+    post = Post.objects.get(pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect("diary:post_list")
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'diary/post_edit.html', {
+        'form': form,
+    })
+
