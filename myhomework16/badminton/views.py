@@ -5,7 +5,7 @@ from django.views.generic import ListView, DetailView
 
 from badminton.models import Minton
 
-mlist = ListView.as_view(model=Minton, template_name='badminton/minton_list.html')
+minton_list = ListView.as_view(model=Minton)  #, template_name='badminton/minton_list.html')
 
 
 # def minton_list(request: HttpRequest) -> HttpResponse:
@@ -20,7 +20,7 @@ mlist = ListView.as_view(model=Minton, template_name='badminton/minton_list.html
 #     }
 #     return render(request, template_name, context_data)
 
-mdetail = DetailView.as_view(model=Minton, template_name='badminton/minton_detail.html')
+minton_detail = DetailView.as_view(model=Minton)  #, template_name='badminton/minton_detail.html')
 
 # def minton_detail(request: HttpRequest, pk: int) -> HttpResponse:
 #     minton = Minton.objects.get(pk=pk)
