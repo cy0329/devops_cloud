@@ -13,12 +13,19 @@
 
     {{ post.content|linebreaks }}
     <h3>댓글</h3>
+    <a href="{% url "diary:comment_new" post.pk %}" class="btn btn-success">댓글 쓰기</a>
+
     <ul>
         {% for comment in comment_list %}
         <li>
             {{ comment.message }}
             by {{ comment.author_name }}
-            at {{ comment.created_at }}
+            at <span title="{{ comment.created_at }}">
+                {{ comment.created_at|timesince }} 전
+            </span>
+            <a href="{% url 'diary:comment_edit' post.pk comment.pk %}" class="badge bg-info">
+                댓글 수정하기
+            </a>
         </li>
     {% endfor %}
 
@@ -29,7 +36,7 @@
         목록으로
     </a>
 
-    <a href="{% url "diary:post_edit" post.pk %}" class="btn btn-success">
+    <a href="{% url "diary:post_edit" post.pk %}" class="btn btn-danger">
         수정하기
     </a>
 {% endblock %}

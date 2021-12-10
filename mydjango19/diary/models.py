@@ -27,7 +27,7 @@ class Post(TimestampedModel):  # 상속 받아서 정의 --> 코드 줄이기
 
     # Tag가 뒤에 있기 때문에 문자열로 넣어주면 장고가 알아서 현재 앱에서 찾아서 관계를 맺어줌
     def __str__(self) -> str:
-        return self.title
+        return f"[{self.pk}] {self.title}"
 
     class Meta:
         verbose_name = "포스팅"

@@ -11,7 +11,7 @@ from django.core.validators import RegexValidator
 #     )
 ## 폼 필드를 직접 지정해줄때는 위의 방식
 
-from diary.models import Post
+from diary.models import Post, Comment
 
 
 class PostForm(forms.ModelForm):
@@ -29,3 +29,9 @@ class PostForm(forms.ModelForm):
             "tag_set",
         ]
         # 이 필드에 대해서만 html을 보여주고, 유효성 검사를 하고, db에 저장함
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ["author_name", "message"]
