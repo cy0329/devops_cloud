@@ -38,3 +38,18 @@ def post_new(request: HttpRequest) -> HttpResponse:
         'form': form,
     })
 
+
+def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "성공적으로 변경되었습니다.")
+            return redirect('mintonplace:post_detail', pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'mintonplace/post_form.html', {
+        'form': form,
+    })
+

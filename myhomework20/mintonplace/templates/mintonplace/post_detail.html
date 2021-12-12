@@ -18,6 +18,15 @@
         </tr>
         <tr>
             <td>
+                {% if post.parking %}
+                    주차장 있음
+                {% else %}
+                    주차장 없음
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
                 {{ post.created_at|timesince }}전에 등록
             </td>
         </tr>
@@ -34,6 +43,7 @@
         </tbody>
     </table>
     <a href="{% url 'mintonplace:post_list' %}" class="btn btn-primary" style="margin-bottom: 1em;">목록으로</a>
+    <a href="{% url 'mintonplace:post_edit' post.pk %}" class="btn btn-primary" style="margin-bottom: 1em;">수정하기</a>
 
 {% endblock %}
 
