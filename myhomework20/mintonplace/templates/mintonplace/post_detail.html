@@ -35,7 +35,10 @@
                 <h2>리뷰s</h2>
                 <ul>
                     {% for review in review_list %}
-                        <li>{{ review.message }} by {{ review.author_name }} at {{ review.created_at }}</li>
+                        <li>
+                            {{ review.message }} by {{ review.author_name }} at {{ review.created_at }}
+
+                        </li>
                     {% endfor %}
                 </ul>
             </td>
@@ -44,6 +47,6 @@
     </table>
     <a href="{% url 'mintonplace:post_list' %}" class="btn btn-primary" style="margin-bottom: 1em;">목록으로</a>
     <a href="{% url 'mintonplace:post_edit' post.pk %}" class="btn btn-primary" style="margin-bottom: 1em;">수정하기</a>
-
+    <a href="{% url 'mintonplace:review_new' post.pk %}" class="btn btn-primary" style="margin-bottom: 1em;">댓글쓰기</a>
 {% endblock %}
 

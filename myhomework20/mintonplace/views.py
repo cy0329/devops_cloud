@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
-from mintonplace.forms import PostForm
+from mintonplace.forms import PostForm, ReviewForm
 from mintonplace.models import Post
 
 
@@ -25,13 +25,12 @@ def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
 
 
 def post_new(request: HttpRequest) -> HttpResponse:
-    # raise NotImplementedError("구현 예정")
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             saved_post = form.save()
             messages.success(request, "성공적으로 저장되었습니다.")
-            return redirect('shop:shop_detail', saved_post.pk)
+            return redirect('mintonplace:post_detail', saved_post.pk)
     else:
         form = PostForm()
     return render(request, 'mintonplace/post_form.html', {
@@ -53,3 +52,19 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
         'form': form,
     })
 
+
+def review_new(request: HttpRequest, post_pk: int) -> HttpResponse:
+    post = get_object_or_404(Post, pk=post_pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.post = post
+            review.save()
+            messages.success(request, "성공적으로 저장되었습니다.")
+            return redirect('mintonplace:post_detail', review.pk)
+    else:
+        form = ReviewForm()
+    return render(request, 'mintonplace/review_form.html', {
+        'form': form,
+    })
