@@ -8,9 +8,13 @@
 
     <hr>
     {{ shop.created_at|timesince }}전에 등록
+    <hr>
+    <a href="{% url "shop:review_new" shop.pk %}" class="btn btn-success">리뷰 쓰기</a>
     <ul>
         {% for review in review_list %}
-            <li>review</li>
+            <li>{{ review.message }} by {{ review.author_name }} at {{ review.created_at }}
+                <a href="{% url "shop:review_edit" shop.pk review.pk %}" class="badge bg-warning">댓글 수정하기</a>
+            </li>
         {% endfor %}
     </ul>
     <a href="{% url "shop:shop_list" %}" class="btn btn-primary">
