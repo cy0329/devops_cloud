@@ -1,0 +1,5 @@
+__pycache__
+.idea
+media
+.vscode
+db.sqlite3
