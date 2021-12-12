@@ -1,10 +1,16 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
+
+def root(request):
+    return redirect('mintonplace:post_list')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', root, name='root'),
+    path('mintonplace/', include('mintonplace.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
