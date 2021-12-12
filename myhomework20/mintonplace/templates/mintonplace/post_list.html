@@ -1,0 +1,26 @@
+{% extends 'mintonplace/layout.html' %}
+
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>
+                <h1>민턴장 목록</h1>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <ul>
+                    {% for post in post_list %}
+                        <li><a href="{% url "mintonplace:post_detail" post.pk %}">{{ post }}</a></li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

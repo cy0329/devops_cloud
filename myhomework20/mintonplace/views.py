@@ -7,7 +7,10 @@ from mintonplace.models import Post
 
 
 def post_list(request: HttpRequest) -> HttpResponse:
-    pass
+    qs = Post.objects.all()
+    return render(request, 'mintonplace/post_list.html', {
+        'post_list': qs,
+    })
 
 
 def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
