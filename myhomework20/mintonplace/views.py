@@ -11,11 +11,11 @@ def post_list(request: HttpRequest) -> HttpResponse:
 
 
 def post_detail(request: HttpRequest, pk: int) -> HttpResponse:
-    shop = get_object_or_404(Post, pk=pk)
-    review_list = shop.review_set.all()
-    tag_list = shop.tag_set.all()
-    return render(request, 'post/post_detail.html', {
-        'shop': shop,
+    post = get_object_or_404(Post, pk=pk)
+    review_list = post.review_set.all()
+    tag_list = post.tag_set.all()
+    return render(request, 'mintonplace/post_detail.html', {
+        'post': post,
         'review_list': review_list,
         'tag_list': tag_list,
     })
@@ -31,7 +31,7 @@ def post_new(request: HttpRequest) -> HttpResponse:
             return redirect('shop:shop_detail', saved_post.pk)
     else:
         form = PostForm()
-    return render(request, 'post/post_form.html', {
+    return render(request, 'mintonplace/post_form.html', {
         'form': form,
     })
 

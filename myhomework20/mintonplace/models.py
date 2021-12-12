@@ -19,6 +19,7 @@ class Post(TimestampedModel):
                                  help_text="입력 예) 042-123-1234 또는 010-1234-1234")
     description = models.TextField(blank=True)
     photo = models.ImageField(blank=True)
+    parking = models.BooleanField(default=False)
     tag_set = models.ManyToManyField('Tag', blank=True)
 
     def __str__(self):
