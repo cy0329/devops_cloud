@@ -4,10 +4,8 @@
     <list default="true" id="6e74f68e-b152-485d-89bd-5226bdefffc8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myhomework20/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../myhomework20/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myhomework20/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/../myhomework20/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myhomework20/mintonplace/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/../myhomework20/mintonplace/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../myhomework20/mintonplace/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../myhomework20/mintonplace/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../myhomework20/myhomework20/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../myhomework20/myhomework20/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../myhomework20/myhomework20/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../myhomework20/myhomework20/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
