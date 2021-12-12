@@ -37,7 +37,8 @@
                     {% for review in review_list %}
                         <li>
                             {{ review.message }} by {{ review.author_name }} at {{ review.created_at }}
-
+                            <a href="{% url 'mintonplace:review_edit' post.pk review.pk%}" class="badge bg-warning"
+                               style="margin-bottom: 1em;">댓글수정하기</a>
                         </li>
                     {% endfor %}
                 </ul>

@@ -3,7 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 
 from mintonplace.forms import PostForm, ReviewForm
-from mintonplace.models import Post
+from mintonplace.models import Post, Review
 
 
 def post_list(request: HttpRequest) -> HttpResponse:
@@ -68,3 +68,19 @@ def review_new(request: HttpRequest, post_pk: int) -> HttpResponse:
     return render(request, 'mintonplace/review_form.html', {
         'form': form,
     })
+
+
+def review_edit(request: HttpRequest, post_pk: int, review_pk: int) -> HttpResponse:
+    review = get_object_or_404(Review, pk=review_pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES, instance=review)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "성공적으로 변경되었습니다.")
+            return redirect('mintonplace:post_detail', post_pk)
+    else:
+        form = ReviewForm(instance=review)
+    return render(request, 'mintonplace/review_form.html', {
+        'form': form,
+    })
+
