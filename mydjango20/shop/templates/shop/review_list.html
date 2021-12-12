@@ -1,0 +1,26 @@
+{% extends 'shop/layout.html' %}
+
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>
+                리뷰들
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <ul>
+                    {% for review in review_list %}
+                        <li>review</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}

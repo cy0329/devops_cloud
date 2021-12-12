@@ -8,6 +8,16 @@
 
     <hr>
     {{ shop.created_at|timesince }}전에 등록
-    <a href="{% url 'shop:review_list' %}">리뷰 목록</a>
-
+    <ul>
+        {% for review in review_list %}
+            <li>review</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url "shop:shop_list" %}" class="btn btn-primary">
+        목록으로
+    </a>
+    <a href="{% url 'shop:shop_edit' shop.pk %}" class="btn btn-danger">
+        shop 수정하기
+    </a>
 {% endblock %}
+

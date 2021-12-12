@@ -1,0 +1,26 @@
+{% extends 'shop/layout.html' %}
+
+{% block content %}
+    <table class="table table-hover table-bordered">
+        <thead>
+        <tr>
+            <th>
+                shop 목록
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <ul>
+                    {% for shop in shop_list %}
+                        <li><a href="{% url "shop:shop_detail" shop.pk %}">{{ shop }}</a></li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+{% endblock %}
