@@ -3,7 +3,7 @@ from django import forms
 from mintonplace.models import Post, Review
 
 
-class ShopForm(forms.ModelForm):
+class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = "__all__"
