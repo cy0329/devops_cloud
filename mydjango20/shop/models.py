@@ -19,6 +19,9 @@ class Shop(TimestampedModel):
                                  help_text="입력 예) 042-123-1234 또는 010-1234-1234")
     tag_set = models.ManyToManyField('Tag', blank=True)  # 태그를 꼭 써주겠다 하면 blank를 빼주거나 False로
 
+    def __str__(self):
+        return self.name
+
 
 class Review(TimestampedModel):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
@@ -28,3 +31,7 @@ class Review(TimestampedModel):
 
 class Tag(TimestampedModel):
     name = models.CharField(max_length=100, unique=True)  # 유일성
+
+    def __str__(self):
+        return self.name
+
