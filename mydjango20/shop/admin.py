@@ -5,7 +5,8 @@ from shop.models import Shop, Review, Tag
 
 @admin.register(Shop)
 class ShopAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id', 'name', 'telephone']
+    list_display_links = ['name']
 
 
 @admin.register(Review)

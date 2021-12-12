@@ -4,6 +4,12 @@ from shop.forms import ShopForm
 from shop.models import Shop
 
 
+def shop_list(request: HttpRequest) -> HttpResponse:
+    qs = Shop.objects.all()
+    return render(request, 'Shop/shop_list.html', {
+        'shop_list': qs
+    })
+
 # /shop/100/
 def shop_detail(request: HttpRequest, pk: int) -> HttpResponse:
     shop = get_object_or_404(Shop, pk=pk)
@@ -26,3 +32,6 @@ def shop_new(request: HttpRequest) -> HttpResponse:
         'form': form,
     })
 
+
+def review_list(request: HttpRequest, pk: int) -> HttpResponse:
+    pass

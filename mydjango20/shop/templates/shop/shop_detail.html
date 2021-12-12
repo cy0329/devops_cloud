@@ -8,5 +8,6 @@
 
     <hr>
     {{ shop.created_at|timesince }}전에 등록
+    <a href="{% url 'shop:review_list' %}">리뷰 목록</a>
 
 {% endblock %}
