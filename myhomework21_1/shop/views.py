@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from shop.forms import ShopForm
-from shop.models import Shop
+from shop.models import Shop, Tag
 
 
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -19,8 +19,17 @@ def shop_new(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = ShopForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('shop:shop_list')
+            saved_post = form.save()
+            tag_list = []
+            tags = form.cleaned_data.get("tags", "")
+            for word in tags.split(","):
+                tag_name = word.strip()
+                tag, __ = Tag.objects.get_or_create(name=tag_name)
+                tag_list.append(tag)
+
+            saved_post.tag_set.clear()
+            saved_post.tag_set.add(*tag_list)
+            return redirect('shop:shop_detail', saved_post.pk)
     else:
         form = ShopForm()
 
