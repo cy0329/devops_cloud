@@ -16,8 +16,8 @@ def shop_new(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = ShopForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
-            return redirect('shop:shop_list')
+            saved_post = form.save()
+            return redirect('shop:shop_detail', saved_post.pk)
     else:
         form = ShopForm()
     return render(request, 'shop/shop_form.html', {
@@ -29,5 +29,20 @@ def shop_detail(request: HttpRequest, pk: int) -> HttpResponse:
     shop = Shop.objects.get(pk=pk)
     return render(request, 'shop/shop_detail.html', {
         'shop': shop,
+    })
+
+
+def shop_edit(request: HttpRequest, pk: int) -> HttpResponse:
+    shop = Shop.objects.get(pk=pk)
+    if request.method == "POST":
+        form = ShopForm(request.POST, request.FILES, instance=shop)
+        if form.is_valid():
+            saved_post = form.save()
+            return redirect('shop:shop_detail', saved_post.pk)
+    else:
+        form = ShopForm(instance=shop)
+
+    return render(request, 'shop/shop_form.html', {
+        'form': form,
     })
 
