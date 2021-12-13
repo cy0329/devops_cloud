@@ -2,13 +2,15 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 
 from shop.forms import ShopForm
-from shop.models import Shop
+from shop.models import Shop, Category
 
 
 def shop_list(request: HttpRequest) -> HttpResponse:
+    category_qs = Category.objects.all()
     qs = Shop.objects.all()
     return render(request, 'shop/shop_list.html', {
         'shop_list': qs,
+        'category_list': category_qs,
     })
 
 
