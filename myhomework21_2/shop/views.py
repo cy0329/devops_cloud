@@ -8,6 +8,10 @@ from shop.models import Shop, Category
 def shop_list(request: HttpRequest) -> HttpResponse:
     category_qs = Category.objects.all()
     qs = Shop.objects.all()
+    query = request.GET.get("query", "")
+    if query:
+        qs = qs.filter(name__icontains=query)
+
     return render(request, 'shop/shop_list.html', {
         'shop_list': qs,
         'category_list': category_qs,
