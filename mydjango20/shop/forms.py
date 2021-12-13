@@ -5,7 +5,7 @@ from shop.models import Shop, Review, Tag
 class ShopForm(forms.ModelForm):
     tags = forms.CharField()
 
-    def extra_save(self):
+    def save(self):
         # 부모의 save를 호출해주어야 함
         saved_post = super().save()
 
