@@ -2,7 +2,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 
 from shop.forms import ShopForm
-from shop.models import Shop, Category
+from shop.models import Shop, Category, Tag
 
 
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -23,6 +23,16 @@ def shop_new(request: HttpRequest) -> HttpResponse:
         form = ShopForm(request.POST, request.FILES)
         if form.is_valid():
             saved_post = form.save()
+
+            tag_list = []
+            tags = form.cleaned_data.get("tags", "")
+            for word in tags.split(","):
+                tag_name = word.strip()
+                tag, __ = Tag.objects.get_or_create(name=tag_name)
+                tag_list.append(tag)
+
+            saved_post.tag_set.clear()
+            saved_post.tag_set.add(*tag_list)
             return redirect('shop:shop_detail', saved_post.pk)
     else:
         form = ShopForm()
