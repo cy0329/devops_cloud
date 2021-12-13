@@ -3,9 +3,12 @@
 {% block content %}
 
     <h2>{{ shop.name }}</h2>
-
-    {{ shop.description }}
-
+    <p>
+        {% for tag in shop.tag_set.all %}
+            <span class="badge bg-success">{{ tag.name }}</span>
+        {% endfor %}
+        {{ shop.description }}
+    </p>
     <hr>
     {{ shop.created_at|timesince }}전에 등록
     <hr>
