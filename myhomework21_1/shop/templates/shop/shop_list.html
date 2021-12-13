@@ -5,7 +5,7 @@
         <h2>Shop List</h2>
         <ul>
             {% for shop in shop_list %}
-                <li>{{ shop.name }}</li>
+                <li><a href="{% url 'shop:shop_detail' shop.pk %}">{{ shop.name }}</a></li>
             {% endfor %}
         </ul>
 
