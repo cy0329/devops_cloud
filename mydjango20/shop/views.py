@@ -6,7 +6,12 @@ from shop.models import Shop, Review
 
 
 def shop_list(request: HttpRequest) -> HttpResponse:
-    qs = Shop.objects.all()
+    qs = Shop.objects.all()  # .order_by("-id")
+
+    query = request.GET.get("query", "")
+    if query:
+        qs = qs.filter(name__icontains=query)
+
     return render(request, 'shop/shop_list.html', {
         'shop_list': qs,
     })

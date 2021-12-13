@@ -16,6 +16,9 @@ class Category(TimestampedModel):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Shop(TimestampedModel):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -30,16 +33,24 @@ class Shop(TimestampedModel):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ["-id"]
+
 
 class Review(TimestampedModel):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
     author_name = models.CharField(max_length=20)
     message = models.TextField()
 
+    class Meta:
+        ordering = ["-id"]
 
 class Tag(TimestampedModel):
     name = models.CharField(max_length=100, unique=True)  # 유일성
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ["name"]
 
