@@ -25,6 +25,7 @@ class Shop(TimestampedModel):
     name = models.CharField(max_length=100, db_index=True)
     address = models.CharField(max_length=100)
     telephone = models.CharField(max_length=15, validators=[RegexValidator(r"^\d{3}-?\d{3,4}-?\d{4}", message="전화번호를 입력해주세요."),])
+    description = models.TextField()
     tag_set = models.ManyToManyField('Tag', blank=True)
 
     def __str__(self):
