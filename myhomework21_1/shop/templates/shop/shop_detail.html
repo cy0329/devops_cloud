@@ -6,5 +6,5 @@
     {{ shop.telephone }}
     {{ shop.description|linebreaks }}
     {{ shop.created_at }}에 작성
-
+    <a href="{% url 'shop:shop_edit' shop.pk %}" class="btn btn-danger">수정하기</a>
 {% endblock %}
