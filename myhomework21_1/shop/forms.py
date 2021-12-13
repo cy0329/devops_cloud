@@ -8,7 +8,7 @@ class ShopForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if self.instancd.pk:
+        if self.instance.pk:
             tag_qs = self.instance.tag_set.all()
             tags = ",".join([tag.name for tag in tag_qs])
             self.fields["tags"].initial = tags
