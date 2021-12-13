@@ -13,6 +13,9 @@
                     <li><a href="{% url "shop:shop_detail" shop.pk %}">{{ shop }}</a></li>
                 {% endfor %}
             </ul>
+            <div class="d-grid mb-3">
+                <a href="{% url "shop:shop_new" %}" class="btn btn-primary">새로 작성하기</a>
+            </div>
         </div>
         <div class="col-sm-4">
 
@@ -32,5 +35,4 @@
             </ul>
         </div>
     </div>
-    <a href="{% url "shop:shop_new" %}" class="btn btn-primary">새로 작성하기</a>
 {% endblock %}
