@@ -47,7 +47,7 @@ class Tag(TimestampedModel):
 
 class Review(TimestampedModel):
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
-    author_name = models.CharField(max_length=100, unique=True)
+    author_name = models.CharField(max_length=100)
     message = models.TextField()
 
     class Meta:
