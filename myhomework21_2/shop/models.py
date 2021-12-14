@@ -45,3 +45,11 @@ class Tag(TimestampedModel):
         ordering = ['name']
 
 
+class Review(TimestampedModel):
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    author_name = models.CharField(max_length=100, unique=True)
+    message = models.TextField()
+
+    class Meta:
+        ordering = ['-id']
+

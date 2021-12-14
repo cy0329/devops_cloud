@@ -1,16 +1,47 @@
 {% extends 'shop/layout.html' %}
 
 {% block content %}
-    <h2>{{ shop.name }}</h2>
-    <p>
-        {% for tag in shop.tag_set.all %}
-            <span class="badge bg-info">{{ tag.name }}</span>
-        {% endfor %}
-    </p>
-    {{ shop.address }}
-    {{ shop.telephone }}
-    {{ shop.description|linebreaks }}
-    {{ shop.created_at|timesince }}전에 작성
-    <a href="{% url 'shop:shop_list' %}" class="btn btn-success">목록으로</a>
-    <a href="{% url 'shop:shop_edit' shop.pk %}" class="btn btn-danger">수정하기</a>
+    <div class="container">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th>{{ shop.name }}</th>
+                {% for tag in shop.tag_set.all %}
+                    <span class="badge bg-info">{{ tag.name }}</span>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <li>주소: {{ shop.address }}</li>
+                    <li>전화번호: {{ shop.telephone }}</li>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    ==설명==<br>{{ shop.description|linebreaks }}</br>
+                    {{ shop.created_at|timesince }}전에 작성
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>리뷰</h3>
+                    <ul>
+                        {% for review in review_list %}
+                            <li>
+                                {{ review.message }}
+                                by {{ review.author_name }}
+                                at {{ review.created_at }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'shop:shop_list' %}" class="btn btn-success">목록으로</a>
+        <a href="{% url 'shop:shop_edit' shop.pk %}" class="btn btn-danger">수정하기</a>
+        <a href="{% url 'shop:review_new' shop.pk %}" class="btn btn-success">댓글달기</a>
+    </div>
 {% endblock %}

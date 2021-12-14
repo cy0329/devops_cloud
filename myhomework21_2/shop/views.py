@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 
-from shop.forms import ShopForm
+from shop.forms import ShopForm, ReviewForm
 from shop.models import Shop, Category, Tag
 
 
@@ -34,8 +34,10 @@ def shop_new(request: HttpRequest) -> HttpResponse:
 
 def shop_detail(request: HttpRequest, pk: int) -> HttpResponse:
     shop = Shop.objects.get(pk=pk)
+    review_list = shop.review_set.all()
     return render(request, 'shop/shop_detail.html', {
         'shop': shop,
+        'review_list': review_list,
     })
 
 
@@ -53,3 +55,16 @@ def shop_edit(request: HttpRequest, pk: int) -> HttpResponse:
         'form': form,
     })
 
+
+def review_new(request: HttpRequest, shop_pk: int) -> HttpResponse:
+    shop = Shop.objects.get(pk=shop_pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES)
+        form.save()
+        return redirect('shop:shop_detail', shop.pk)
+    else:
+        form = ReviewForm()
+
+    return render(request, 'shop/review_form.html', {
+        'form': form,
+    })

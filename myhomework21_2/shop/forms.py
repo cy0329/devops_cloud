@@ -1,6 +1,6 @@
 from django import forms
 
-from shop.models import Shop, Tag
+from shop.models import Shop, Tag, Review
 
 
 class ShopForm(forms.ModelForm):
@@ -43,5 +43,11 @@ class ShopForm(forms.ModelForm):
             "telephone",
             "description",
         ]
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = "__all__"
 
 
