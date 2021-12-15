@@ -31,10 +31,11 @@
                                 {{ review.message }}
                                 by {{ review.author_name }}
                                 at {{ review.created_at }}
+                                <a href="{% url 'shop:review_edit' shop.pk review.pk %}"
+                                   class="badge bg-danger">수정하기</a>
                             </li>
                         {% endfor %}
                     </ul>
-                    <a href="{% url 'shop:review_edit' shop.pk review.pk %}" class="badge bg-danger">수정하기</a>
                 </td>
             </tr>
             <tr>
