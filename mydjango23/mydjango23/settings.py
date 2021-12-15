@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap5',
     'blog',
+    'accounts',
 ]
 
 if DEBUG:
