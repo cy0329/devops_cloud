@@ -58,7 +58,7 @@ def post_delete(request: HttpRequest, pk: int) -> HttpResponse:
         post.delete()   # 실제로 DB에 DELETE 쿼리 실행
         messages.success(request, f'#{pk} 포스팅을 삭제했습니다.')
         return redirect('blog:post_list')
-
+    # delete html은 _confirm_delete.html로 약속
     return render(request, "blog/post_confirm_delete.html", {
         'post': post,
     })
