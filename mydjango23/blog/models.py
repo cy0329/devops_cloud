@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class TimestampedModel(models.Model):
@@ -37,6 +38,11 @@ class Post(TimestampedModel):
 
     def __str__(self):
         return self.title
+
+    # post_detail 주소 문자열을 반환하길 기대
+    # detail 페이지를 구현하자마자, 즉시 아래 메서드를 구현
+    def get_absolute_url(self) -> str:
+        return reverse('blog:post_detail', args=[self.pk])
 
     class Meta:
         ordering = ['title']

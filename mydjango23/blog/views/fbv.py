@@ -26,7 +26,8 @@ def post_new(request: HttpRequest) -> HttpResponse:
         if form.is_valid():
             saved_post = form.save()
             messages.success(request, f"#{saved_post.pk} 포스팅을 저장했습니다.")
-            return redirect('blog:post_detail', saved_post.pk)
+            return redirect(saved_post)  # 이렇게도 쓸 수 있음. --수업중 했던 get_absolute_url 부분 FBV에 적용
+            # return redirect('blog:post_detail', saved_post.pk)
     else:
         form = PostForm()
     return render(request, 'blog/post_form.html', {
@@ -41,7 +42,8 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
         if form.is_valid():
             saved_post = form.save()
             messages.success(request, f"#{pk} 포스팅을 저장했습니다.")
-            return redirect('blog:post_detail', saved_post.pk)
+            return redirect(saved_post)  # 이렇게도 쓸 수 있음
+            # return redirect('blog:post_detail', saved_post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'blog/post_form.html', {
