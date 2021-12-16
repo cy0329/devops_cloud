@@ -6,7 +6,7 @@ from blog.models import Post, Tag, Subscriber
 
 
 class PostForm(forms.ModelForm):
-    tags = forms.CharField()
+    tags = forms.CharField()# required=True)
 
     # 초기값 지정 ( 생성자 함수 사용 )
     def __init__(self, *args, **kwargs):  # 팩킹
