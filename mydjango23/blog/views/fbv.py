@@ -1,9 +1,10 @@
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import CreateView
 
-from blog.forms import PostForm
-from blog.models import Post
+from blog.forms import PostForm, SubscriberForm
+from blog.models import Post, Subscriber
 
 
 def post_list(request: HttpRequest) -> HttpResponse:
@@ -68,10 +69,16 @@ def post_delete(request: HttpRequest, pk: int) -> HttpResponse:
     # POST 요청 : 삭제를 하고, 다른 주소로 이동을 시킨다.
 
     if request.method == 'POST':
-        post.delete()   # 실제로 DB에 DELETE 쿼리 실행
+        post.delete()  # 실제로 DB에 DELETE 쿼리 실행
         messages.success(request, f'#{pk} 포스팅을 삭제했습니다.')
         return redirect('blog:post_list')
     # delete html은 _confirm_delete.html로 약속
     return render(request, "blog/post_confirm_delete.html", {
         'post': post,
     })
+
+
+subscriber_new = CreateView.as_view(
+    model=Subscriber,
+    form_class=SubscriberForm,
+)

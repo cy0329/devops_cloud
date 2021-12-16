@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -14,8 +16,12 @@ def profile_image(request: HttpRequest) -> HttpResponse:
     return response
 
 
-def login(request):
-    pass
+# def login(request):
+#     pass
+
+login = LoginView.as_view(
+    template_name='accounts/login_form.html',
+)
 
 
 # 새로운 User 인스턴스를 만드는 것.
@@ -39,10 +45,13 @@ def signup(request):
 #     template_name="accounts/signup_form.html",
 # )
 
-
+@login_required  # 로그인이 필요한 url로 자동 연결  (주소 뒤에 ?next=urlreverse가 붙음)
 def profile(request):
-    pass
+    return render(request, 'accounts/profile.html')
 
 
-def logout(request):
-    pass
+logout = LogoutView.as_view(
+    next_page='accounts:login',
+)
+# 이런거 구현할때 컨트롤 클릭으로 LogoutView 클릭해서 안에 지원하는게 뭐가 있는지 보고 괄호 안에서
+# 변경해줘서 구현할 수 있음
