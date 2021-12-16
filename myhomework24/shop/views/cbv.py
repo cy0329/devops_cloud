@@ -1,4 +1,4 @@
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from shop.forms import ShopForm
@@ -8,24 +8,41 @@ shop_list = ListView.as_view(
     model=Shop,
 )
 
-
 shop_detail = DetailView.as_view(
     model=Shop,
 )
 
-shop_new = CreateView.as_view(
-    model=Shop,
-    form_class=ShopForm,
-    success_url=reverse_lazy('shop:shop_list')
-)
 
-shop_edit = UpdateView.as_view(
-    model=Shop,
-    form_class=ShopForm,
-    success_url=reverse_lazy('shop:shop_list')
-)
+class ShopCreateView(CreateView):
+    model = Shop
+    form_class = ShopForm
 
-shop_delete = DeleteView.as_view(
-    model=Shop,
-    success_url=reverse_lazy('shop:shop_list')
-)
+    def get_success_url(self):
+        shop_pk = self.object.pk
+        return reverse('shop:shop_detail', args=[shop_pk])
+
+
+shop_new = ShopCreateView.as_view()
+
+
+class ShopUpdateView(UpdateView):
+    model = Shop
+    form_class = ShopForm
+
+    def get_success_url(self):
+        shop_pk = self.object.pk
+        return reverse('shop:shop_detail', args=[shop_pk])
+
+
+shop_edit = ShopUpdateView.as_view()
+
+
+class ShopDeleteView(DeleteView):
+    model = Shop
+
+    def get_success_url(self):
+        return reverse('shop:shop_list')
+
+
+shop_delete = ShopDeleteView.as_view()
+
