@@ -1,0 +1,11 @@
+{% extends 'shop/layout.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<h2>삭제를 확인</h2>
+    <form action="" method="post">
+    {% csrf_token %}
+        {{ form.as_table }}
+        <input type="submit" value="삭제하겠습니다.">
+    </form>
+    <a href="{% url 'shop:shop_detail' shop.pk %}" class="btn btn-warning">돌아가기</a>
+{% endblock %}

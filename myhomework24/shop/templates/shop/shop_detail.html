@@ -29,6 +29,7 @@
             <td>
                 <a href="{% url 'shop:shop_list' %}" class="btn btn-primary">목록으로</a>
                 <a href="{% url 'shop:shop_edit' shop.pk %}" class="btn btn-primary">수정하기</a>
+                <a href="{% url 'shop:shop_delete' shop.pk %}" class="btn btn-danger">삭제하기</a>
             </td>
         </tr>
         </tbody>

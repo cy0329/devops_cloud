@@ -2,11 +2,11 @@
 {% block content %}
     <h2>Shop List</h2>
     <ul>
-        <li>
-            {% for shop in shop_list %}
+        {% for shop in shop_list %}
+            <li>
                 <a href="{% url 'shop:shop_detail' shop.pk %}">{{ shop.name }}</a>
-            {% endfor %}
-        </li>
+            </li>
+        {% endfor %}
     </ul>
     <a href="{% url 'shop:shop_new' %}" class="btn btn-primary">새로 등록</a>
 {% endblock %}

@@ -45,3 +45,12 @@ def shop_edit(request: HttpRequest, pk: int) -> HttpResponse:
         'form': form,
     })
 
+
+def shop_delete(request: HttpRequest, pk: int) -> HttpResponse:
+    shop = get_object_or_404(Shop, pk=pk)
+    if request.method == "POST":
+        shop.delete()
+        return redirect('shop:shop_list')
+    return render(request, 'shop/shop_confirm_delete.html', {
+        'shop': shop,
+    })
