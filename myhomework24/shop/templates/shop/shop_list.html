@@ -4,7 +4,7 @@
     <ul>
         <li>
             {% for shop in shop_list %}
-                {{ shop.name }}
+                <a href="{% url 'shop:shop_detail' shop.pk %}">{{ shop.name }}</a>
             {% endfor %}
         </li>
     </ul>
