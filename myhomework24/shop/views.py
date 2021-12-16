@@ -1,8 +1,8 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-from shop.forms import ShopForm
-from shop.models import Shop
+from shop.forms import ShopForm, ReviewForm
+from shop.models import Shop, Review
 
 
 def shop_list(request: HttpRequest) -> HttpResponse:
@@ -27,8 +27,10 @@ def shop_new(request: HttpRequest) -> HttpResponse:
 
 def shop_detail(request: HttpRequest, pk: int) -> HttpResponse:
     shop = get_object_or_404(Shop, pk=pk)
+    review_list = shop.review_set.all()
     return render(request, 'shop/shop_detail.html', {
         'shop': shop,
+        'review_list': review_list,
     })
 
 
@@ -54,3 +56,27 @@ def shop_delete(request: HttpRequest, pk: int) -> HttpResponse:
     return render(request, 'shop/shop_confirm_delete.html', {
         'shop': shop,
     })
+
+
+def review_new(request: HttpRequest, shop_pk: int) -> HttpResponse:
+    shop = get_object_or_404(Shop, pk=shop_pk)
+    if request.method == "POST":
+        form = ReviewForm(request.POST, request.FILES)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.shop = shop
+            review.save()
+            return redirect('shop:shop_detail', shop_pk)
+    else:
+        form = ReviewForm()
+    return render(request, 'shop/review_form.html', {
+        'form': form,
+    })
+
+
+def review_edit():
+    pass
+
+
+def review_delete():
+    pass

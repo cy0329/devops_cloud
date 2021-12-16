@@ -27,9 +27,23 @@
         </tr>
         <tr>
             <td>
+                <ul>
+                    {% for review in review_list %}
+                        <li>
+                            {{ review.message }}
+                            by {{ review.author_name }}
+                            at {{ review.created_at }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <a href="{% url 'shop:shop_list' %}" class="btn btn-primary">목록으로</a>
                 <a href="{% url 'shop:shop_edit' shop.pk %}" class="btn btn-primary">수정하기</a>
                 <a href="{% url 'shop:shop_delete' shop.pk %}" class="btn btn-danger">삭제하기</a>
+                <a href="{% url 'shop:review_new' shop.pk %}" class="btn btn-success">댓글 쓰기</a>
             </td>
         </tr>
         </tbody>
