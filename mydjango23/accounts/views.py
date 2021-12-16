@@ -1,7 +1,17 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from PIL import Image
+
+
+def profile_image(request: HttpRequest) -> HttpResponse:
+    canvas = Image.new("RGBA", (256, 256), (255, 0, 255, 255))
+    # text/image
+    response = HttpResponse(content_type="image/png")
+    canvas.save(response, "PNG")
+    return response
 
 
 def login(request):
@@ -20,6 +30,8 @@ def signup(request):
     return render(request, 'accounts/signup_form.html', {
         'form': form,
     })
+
+
 # 위 == 아래
 # signup = CreateView.as_view(
 #     form_class=UserCreationForm,
@@ -34,4 +46,3 @@ def profile(request):
 
 def logout(request):
     pass
-

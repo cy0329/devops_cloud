@@ -8,6 +8,16 @@ from blog.models import Post
 
 def post_list(request: HttpRequest) -> HttpResponse:
     post_qs = Post.objects.all()
+
+    format = request.GET.get("format", "")
+
+    if format == "xlsx":
+        tabular_data = Post.get_tabular_data(post_qs, format='xlsx')
+        return HttpResponse(tabular_data, content_type="application/vnd.ms-excel")
+    elif format == "json":
+        tabular_data = Post.get_tabular_data(post_qs, format='json')
+        return HttpResponse(tabular_data, content_type="application/json")
+
     return render(request, 'blog/post_list.html', {
         'post_list': post_qs,  # post_qs라는 값을 템플릿 내에서 post_list라는 이름으로 참조하겠다.
     })
@@ -48,6 +58,7 @@ def post_edit(request: HttpRequest, pk: int) -> HttpResponse:
         form = PostForm(instance=post)
     return render(request, 'blog/post_form.html', {
         'form': form,
+        'post': post,
     })
 
 
