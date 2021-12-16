@@ -87,5 +87,12 @@ def review_edit(request: HttpRequest, shop_pk: int, review_pk: int) -> HttpRespo
         "form": form,
     })
 
-def review_delete():
-    pass
+
+def review_delete(request: HttpRequest, shop_pk: int, review_pk: int) -> HttpResponse:
+    review = get_object_or_404(Review, pk=review_pk)
+    if request.method == "POST":
+        review.delete()
+        return redirect('shop:shop_detail', shop_pk)
+    return render(request, 'shop/review_confirm_delete.html', {
+        'review': review,
+    })

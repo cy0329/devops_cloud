@@ -34,6 +34,7 @@
                             by {{ review.author_name }}
                             at {{ review.created_at }}
                             <a href="{% url 'shop:review_edit' shop.pk review.pk %}" class="badge bg-info">수정하기</a>
+                            <a href="{% url 'shop:review_delete' shop.pk review.pk %}" class="badge bg-warning">삭제하기</a>
                         </li>
                     {% endfor %}
                 </ul>
