@@ -56,7 +56,9 @@ ROOT_URLCONF = 'mydjango25.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'mydjango25' / 'templates'   # 장고가 인식할 수 있도록
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
