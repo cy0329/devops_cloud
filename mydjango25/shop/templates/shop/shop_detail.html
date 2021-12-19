@@ -28,4 +28,7 @@
     {% empty %}
         등록된 리뷰가 없습니다.
     {% endfor %}
+    <hr>
+    <a href="{% url 'shop:shop_list' %}">목록으로</a>
+    <hr>
 {% endblock %}

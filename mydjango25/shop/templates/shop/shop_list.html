@@ -1,6 +1,10 @@
 {% extends 'shop/layout.html' %}
 {% load bootstrap5 %}
 {% block content %}
+    <form action="" method="get" value="{{ request.GET.query }}">
+        <input type="text" name="query" placeholder="검색어를 입력해주세요.">
+        <input type="submit" value="검색">
+    </form>
     <p>
         {% for category in category_list %}
             <span class="badge bg-info">

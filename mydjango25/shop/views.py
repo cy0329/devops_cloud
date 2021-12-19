@@ -18,6 +18,14 @@ class ShopListView(ListView):
         context_data["category_list"] = Category.objects.all()
         return context_data
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+
+        query = self.request.GET.get("query", "")
+        if query:
+            qs = qs.filter(name__icontains=query)
+        return qs
+
 
 shop_list = ShopListView.as_view()  # 클래스를 직접 호출하는건 없음 ==> 클래스.as_view로 호출
 

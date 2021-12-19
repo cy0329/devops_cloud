@@ -16,7 +16,7 @@ login = LoginView.as_view(
 )
 
 # TODO: 커스텀 CBV를 만든다면, LoginRequiredMixin을 상속받도록 할 수 있다.
-# class를 이런식으로 만들때 장식자 (@login_required)를 사용하는 방법
+# CBV 를 이런식으로 만들때 장식자 (@login_required)를 사용하는 방법
 profile = login_required(
     TemplateView.as_view(
         template_name="accounts/profile.html",
