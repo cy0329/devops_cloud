@@ -31,8 +31,8 @@ const tom1 = {
         // console.log(this.name, this.age);
 
         // Template Literals
-        console.log(`안녕, 나는 $(this.name)이야. 
-        $(this.age)살이지`);
+        console.log(`안녕, 나는 ${this.name}이야. 
+        ${this.age}살이지`);
     }
 }
 
