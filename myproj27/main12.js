@@ -2,17 +2,18 @@ const { melon_data: song_array, melon_data } = require("./melon_data");
 // TODO: #12 2곡 이상 랭크된 가수는 총 몇 팀인가요?
 // reduce, Set
 
-
-let songA = new Set();
-
-for (const song of song_array) {
-    let song_count = 0;
-    if (!songA.add(song.artist)) {
-        song_count++
+const Artistcount = song_array.reduce((allArtist, song) => {
+    if (song.artist in allArtist) {
+        allArtist[song.artist]++
     }
-    return songA, song_count
-}
-console.log(songA, song_count)
+    else {
+        allArtist[song.artist] = 1
+    }
+    return allArtist
+}, {});
+
+console.log(allArtist)
+
 /*
 TODO:
 set 하면 중복된 값이 제거됨 -> 그때마다 카운트 시키면..
