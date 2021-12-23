@@ -1,8 +1,8 @@
 import { Input } from 'antd';
 import { useState } from 'react';
 
-import { List, Avatar } from 'antd';
-
+import { List, Avatar, Tooltip, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
 
@@ -63,6 +63,14 @@ function MelonSearch() {
         onChange={handleChange}
         onPressEnter={handlePressEnter}
       />
+      <Tooltip title="search">
+        <Button
+          type="primary"
+          shape="circle"
+          icon={<SearchOutlined />}
+          onClick={handlePressEnter}
+        />
+      </Tooltip>
       {songList.map((song) => (
         <List
           itemLayout="horizontal"
