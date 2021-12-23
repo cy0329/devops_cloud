@@ -5,13 +5,24 @@ const { melon_data: song_array, melon_data } = require("./melon_data");
 
 const love_songs = song_array.filter(song => song.title.includes('사랑'))
 const mapped_ls = love_songs.map(
-    (song) => ({ title: song.title })
+    (song) => song.title
 )
 
-// console.log(mapped_ls)
-let lovesong = []
-for (const obj of mapped_ls) {
-    lovesong.push(obj.title)
-}
+console.log(mapped_ls)
+// let lovesong = []
+// for (const obj of mapped_ls) {
+//     lovesong.push(obj.title)
+// }
 
-console.log(lovesong)
+// console.log(lovesong)
+
+
+// -----solution-----
+
+// const love_songs = song_array
+//     .filter(({ title }) => title.includes("사랑"))
+//     .map(
+//         ({ title }) => title
+//     );
+
+// console.log(love_songs)

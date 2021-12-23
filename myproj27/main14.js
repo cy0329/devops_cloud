@@ -9,3 +9,7 @@ const reducer = (pv, cv) => pv.like > cv.like ? cv : pv;
 
 let likes_list = []
 console.log(`좋아요수가 최저인 BTS 노래: ${BTS_songs.reduce(reducer).title}`)
+
+
+// -----solution-----
+// 13의 솔루션에서 대소비교만 반대로 해주면 됨

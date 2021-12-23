@@ -14,8 +14,25 @@ const { melon_data: song_array, melon_data } = require("./melon_data");
 // console.log(`TOP100 랭크된 가수 팀 수 :${artist_set.size}`)
 
 // 2. (.add 안쓰고)
-const mapped_songs = song_array.map((song) => (song.artist))
-let artist_set = new Set(mapped_songs);
+// const mapped_songs = song_array.map((song) => (song.artist))
+// let artist_set = new Set(mapped_songs);
+// console.log(`TOP100 랭크된 가수 팀 수 :${artist_set.size}`)
 
 
-console.log(`TOP100 랭크된 가수 팀 수 :${artist_set.size}`)
+// -----solution-----  (내 2번 방식, 1번 방식 정돈)
+// 2.
+// const artist_array = song_array.map(({ artist }) => artist);
+// const artist_set = new Set(artist_array);
+// console.log(artist_set.size);
+
+
+// 1.
+const artist_count = song_array
+    .map(({ artist }) => artist)
+    .reduce((acc, artist) => {
+        acc.add(artist);
+        return acc;
+    }, new Set())
+    .size;
+// map을 안했으면 reduce((acc, {artist}) => ) 이렇게 썼어야함
+console.log(`artist_count : ${artist_count}`);

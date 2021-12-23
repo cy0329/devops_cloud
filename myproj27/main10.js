@@ -12,3 +12,24 @@ for (const obj of BTS_song) {
     BTSlikes.push(obj.like)
 }
 console.log(`BTS 좋아요 총합 : ${BTSlikes.reduce((a, b) => a + b)}`)
+
+
+// -----solution-----
+
+Array.prototype.sum = function () {
+    return this.reduce((acc, element) => {
+        return acc + element;
+    }, 0);
+}
+
+
+const result = song_array
+    .filter(
+        ({ artist }) => artist === "방탄소년단"
+    )
+    // .reduce((acc, { like }) => acc + like, 0);
+    // 줄인 것임, 원래 방식 생각해보고 줄이는 것 공부
+    .map(({ like }) => like)
+    .sum();
+
+console.log(result)

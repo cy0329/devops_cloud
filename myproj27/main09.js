@@ -13,3 +13,12 @@ for (const obj of song_titles) {
 }
 
 console.log(like200thSong)
+
+
+// -----solution-----
+// 체이닝을 써주는게 깔끔
+const over_20th_like_songs = song_array
+    .filter(({ like }) => like >= 200000)
+    .map(({ title }) => title)
+
+console.log(over_20th_like_songs)
