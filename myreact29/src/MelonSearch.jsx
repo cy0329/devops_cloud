@@ -1,7 +1,7 @@
-import { Input } from 'antd';
+import { Input, Typography } from 'antd';
 import { useState } from 'react';
 
-import { List, Avatar, Tooltip, Button } from 'antd';
+import { List, Avatar, Tooltip, Button, notification } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
@@ -37,19 +37,28 @@ function MelonSearch() {
       .then((response) => {
         // ALBUMCONTENTS, ARTISTCONTENTS
         const {
-          data: { SONGCONTENTS: searchedSongList },
+          data: { SONGCONTENTS: searchedSongList = [] },
         } = response;
         console.group('멜론 검색결과');
         console.log(response);
         console.log(searchedSongList);
         console.groupEnd();
-
         setSongList(searchedSongList);
+        notification.info({
+          message: '멜론 검색',
+          description: `${searchedSongList.length}개의 노래 검색결과가 있습니다.`,
+        });
       })
       .catch((error) => {
         console.group('멜론 검색 에러');
         console.log(error);
         console.groupEnd();
+
+        notification.error({
+          message: '멜론 검색 에러',
+          // 유저 친화적인 코드는 아님!!!
+          description: JSON.stringify(error),
+        });
       });
   };
 
@@ -73,15 +82,24 @@ function MelonSearch() {
       </Tooltip>
       {songList.map((song) => (
         <List
+          bordered={true}
           itemLayout="horizontal"
           dataSource={data}
           renderItem={() => (
             <List.Item>
-              <List.Item.Meta
-                avatar={<Avatar src={song.ALBUMIMG} />}
-                title={song.SONGNAME}
-                description={song.ARTISTNAME}
-              />
+              <List.Item.Meta avatar={<Avatar src={song.ALBUMIMG} />} />
+              <Typography.Text
+                onClick={() => {
+                  console.log('clicked');
+                }}
+              >
+                <a
+                  href={`https://www.melon.com/song/detail.htm?songId=${song.SONGID}`}
+                  target={'_blank'}
+                >
+                  {song.SONGNAME}
+                </a>
+              </Typography.Text>
             </List.Item>
           )}
         />
@@ -89,13 +107,5 @@ function MelonSearch() {
     </div>
   );
 }
-
-//        <div>
-//          <img src={song.ALBUMIMG} />
-//          {song.SONGNAME} by {song.ARTISTNAME}
-//        </div>
-//      );
-//    })}
-//  </div>
 
 export default MelonSearch;
