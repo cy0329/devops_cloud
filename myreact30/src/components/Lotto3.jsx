@@ -1,29 +1,22 @@
 import { useState } from 'react';
 
-function LottoNum({ color }) {
+function LottoNum3({ color }) {
   // 0. 초기값 지정
   const [numList, setNumList] = useState([]);
   // 1. 랜덤 번호를 뽑아서 리스트화
-  const lottoNumber = () => {
-    let LNList = [];
-
-    for (let i = 0; i < 7; i++) {
-      let randomNum = Math.floor(Math.random() * 44) + 1;
-
-      for (const j in LNList) {
-        if (randomNum == LNList[j]) {
-          randomNum = Math.floor(Math.random() * 44) + 1;
-        }
-      }
-      LNList.push(randomNum);
+  const lottoNumber3 = () => {
+    let lottoSet = new Set();
+    while (lottoSet.size < 8) {
+      let num = Math.floor(Math.random() * 44) + 1;
+      lottoSet.add(num);
     }
-    LNList.sort((a, b) => a - b);
-    return LNList;
+    let RNList = Array.from(lottoSet);
+    RNList.sort((a, b) => a - b);
+    return RNList;
   };
-
   // 2. 버튼 클릭시 실행문 구현
   const handleClick = () => {
-    setNumList(lottoNumber);
+    setNumList(lottoNumber3);
   };
 
   // 3. 보여질 페이지 구현
@@ -50,4 +43,4 @@ const style = {
   userSelect: 'none',
 };
 
-export default LottoNum;
+export default LottoNum3;
