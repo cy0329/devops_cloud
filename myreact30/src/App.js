@@ -1,12 +1,22 @@
+import TopNav from 'components/TopNav';
 import PageAbout from 'pages/PageAbout';
 import PageCounter from 'pages/PageCounter';
+import PageLotto from 'pages/pageLotto';
+import { useState } from 'react';
 
 function App() {
+  const [pageName, setPageName] = useState('about');
+  // const changePageName = (pageName) => {
+  //   setPageName(pageName);
+  // };
   return (
-    <>
-      <PageAbout />
-      <PageCounter />
-    </>
+    <div>
+      <h1>여리의 리액트</h1>
+      <TopNav changePageName={setPageName} />
+      {pageName === 'about' && <PageAbout />}
+      {pageName === 'counter' && <PageCounter />}
+      {pageName === 'lotto' && <PageLotto />}
+    </div>
   );
 }
 
