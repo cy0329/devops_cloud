@@ -1,7 +1,7 @@
 import TopNav from 'components/TopNav';
 import PageAbout from 'pages/PageAbout';
 import PageCounter from 'pages/PageCounter';
-import PageLotto from 'pages/pageLotto';
+import PageLotto from 'pages/PageLotto';
 import { useState } from 'react';
 
 function App() {

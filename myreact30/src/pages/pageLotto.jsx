@@ -1,12 +1,12 @@
 import LottoNum from 'components/Lotto';
 
-function pageLotto() {
+function PageLotto() {
   return (
     <>
       <h2>로또 번호 예상</h2>
-      <LottoNum />
+      <LottoNum color={'red'} />
     </>
   );
 }
 
-export default pageLotto;
+export default PageLotto;
