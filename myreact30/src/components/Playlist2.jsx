@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import { Layout, List, Avatar } from 'antd';
 import { useState } from 'react';
 
-function Player() {
+function Player2() {
   const video_list = [
     {
       title: '한국 급식을 처음 먹어본 영국 중학생들의 반응!?',
@@ -72,48 +72,29 @@ function Player() {
 
   const [youtubeUrl, setYoutubeUrl] = useState('');
 
-  const { Sider, Footer, Content } = Layout;
-
   return (
     <>
-      <Layout>
-        <Layout style={{ marginLeft: 200 }}>
-          <Content style={{ overflow: 'auto', height: '80vh' }}>
-            <div style={{ padding: 100 }}>
-              <ReactPlayer url={youtubeUrl} />
-            </div>
-          </Content>
-
-          <Sider
-            class="scroller"
-            style={{
-              overflow: 'auto',
-              height: '80vh',
-              position: 'fixed',
-              right: 0,
-              backgroundColor: 'white',
-            }}
-            width={500}
-          >
-            <List
-              bordered={true}
-              itemLayout="horizontal"
-              dataSource={video_list}
-              renderItem={(video) => (
-                <List.Item
-                  bordered={true}
-                  onClick={() => setYoutubeUrl(video.youtube_id)}
-                >
-                  <img src={video.thumbnail_url} />
-                  <List.Item.Meta title={<h4>{video.title}</h4>} />
-                </List.Item>
-              )}
-            />
-          </Sider>
-        </Layout>
-        <Footer></Footer>
-      </Layout>
+      <table>
+        {video_list.map((video) => (
+          <tr>
+            <td>
+              <div
+                onClick={() => {
+                  setYoutubeUrl(video.youtube_id);
+                }}
+                onMouseOver="this.style.cursor='hand'"
+              >
+                <img src={video.thumbnail_url} />
+                <h3>{video.title}</h3>
+              </div>
+            </td>
+          </tr>
+        ))}
+        <td>
+          <ReactPlayer url={youtubeUrl} />
+        </td>
+      </table>
     </>
   );
 }
-export default Player;
+export default Player2;
