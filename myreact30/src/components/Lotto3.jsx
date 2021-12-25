@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Ball from './Balls';
 
 function LottoNum3({ color }) {
   // 0. 초기값 지정
@@ -6,7 +7,7 @@ function LottoNum3({ color }) {
   // 1. 랜덤 번호를 뽑아서 리스트화
   const lottoNumber3 = () => {
     let lottoSet = new Set();
-    while (lottoSet.size < 8) {
+    while (lottoSet.size < 7) {
       let num = Math.floor(Math.random() * 44) + 1;
       lottoSet.add(num);
     }
@@ -18,14 +19,13 @@ function LottoNum3({ color }) {
   const handleClick = () => {
     setNumList(lottoNumber3);
   };
-
   // 3. 보여질 페이지 구현
   return (
     <div>
       <button onClick={handleClick}>번호 뽑기!</button>
       <hr />
       {numList.map((number) => (
-        <div style={{ ...style, backgroundColor: color }}>{number}</div>
+        <Ball number={number} />
       ))}
     </div>
   );
