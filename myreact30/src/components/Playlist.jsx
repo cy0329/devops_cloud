@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
-import { List, Avatar } from 'antd';
+import { Layout, List, Avatar } from 'antd';
 import { useState } from 'react';
 
 function Player() {
@@ -37,34 +37,82 @@ function Player() {
       thumbnail_url:
         'https://i.ytimg.com/vi/0Pu--Gf98xY/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDK0FhChfj7jAejB-d8JUixxKciow',
     },
+    {
+      title: '삼겹살에 치즈김치볶음밥 처음 먹어본 영국 고등학생들의 반응!?',
+      youtube_id: 'https://www.youtube.com/watch?v=xnI1QBVKJEI',
+      thumbnail_url:
+        'https://i.ytimg.com/vi/xnI1QBVKJEI/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCGW0Jt2EFzDq2J3GEeMQHWfE7umQ',
+    },
+    {
+      title: '김밥천국을 먹어본 영국 고등학생들의 반응?!',
+      youtube_id: 'https://www.youtube.com/watch?v=VgFA7K-4kn4',
+      thumbnail_url:
+        'https://i.ytimg.com/vi/VgFA7K-4kn4/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCKzbLPx8kDPtM235EEonHqToGYYw',
+    },
+    {
+      title: '수능 영어를 풀어본 영국 고등학생들…!!?',
+      youtube_id: 'https://www.youtube.com/watch?v=M_uGV2L5q3s',
+      thumbnail_url:
+        'https://i.ytimg.com/vi/M_uGV2L5q3s/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB6ycxTTihFQhijvUi7xYbDd1MC3Q',
+    },
+    {
+      title: '길거리토스트 처음 먹어본 영국 고등학생들의 반응!?',
+      youtube_id: 'https://www.youtube.com/watch?v=P5zouxkguEM&t=4s',
+      thumbnail_url:
+        'https://i.ytimg.com/vi/P5zouxkguEM/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD7VlsTCObaPOowi66fqljhZAcxIA',
+    },
+    {
+      title: '한국 길거리 토스트 먹어 본 특별게스트들 반응은!? 🤭',
+      youtube_id: 'https://www.youtube.com/watch?v=uf2yiQDTuUE',
+      thumbnail_url:
+        'https://i.ytimg.com/vi/uf2yiQDTuUE/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBI9ltSymZazZE4hkUvTuuZN9FFJQ',
+    },
   ];
   // TODO: 리스트 형식으로 만들고 클릭 시 그 영상이 보여지도록
 
   const [youtubeUrl, setYoutubeUrl] = useState('');
 
+  const { Sider, Footer, Content } = Layout;
+
   return (
-    <div>
-      <table>
-        <tr>
-          <td colspan={10}>
-            {video_list.map((video) => (
-              <div
-                onClick={() => {
-                  setYoutubeUrl(video.youtube_id);
-                }}
-                onMouseOver="this.style.cursor='hand'"
-              >
-                <h3>{video.title}</h3>
-                <img src={video.thumbnail_url} />
-              </div>
-            ))}
-          </td>
-          <td colSpan={20}>
-            <ReactPlayer url={youtubeUrl} />
-          </td>
-        </tr>
-      </table>
-    </div>
+    <>
+      <Layout>
+        <Layout style={{ marginLeft: 200 }}>
+          <Content style={{ overflow: 'auto' }}>
+            <div style={{ padding: 100 }}>
+              <ReactPlayer url={youtubeUrl} />
+            </div>
+          </Content>
+          <Sider
+            class="scroller"
+            style={{
+              overflow: 'auto',
+              height: '80vh',
+              position: 'fixed',
+              right: 0,
+              backgroundColor: 'white',
+            }}
+            width={500}
+          >
+            <List
+              bordered={true}
+              itemLayout="horizontal"
+              dataSource={video_list}
+              renderItem={(video) => (
+                <List.Item
+                  bordered={true}
+                  onClick={() => setYoutubeUrl(video.youtube_id)}
+                >
+                  <img src={video.thumbnail_url} />
+                  <List.Item.Meta title={<h4>{video.title}</h4>} />
+                </List.Item>
+              )}
+            />
+          </Sider>
+        </Layout>
+        <Footer></Footer>
+      </Layout>
+    </>
   );
 }
 export default Player;
