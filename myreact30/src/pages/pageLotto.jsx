@@ -6,7 +6,7 @@ function PageLotto() {
   return (
     <>
       <h2>로또 번호 예상</h2>
-      <LottoNum3 color={'red'} />
+      <LottoNum3 />
     </>
   );
 }

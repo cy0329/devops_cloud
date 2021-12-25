@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Ball from './Balls';
 
-function LottoNum3({ color }) {
+function LottoNum3() {
   // 0. 초기값 지정
   const [numList, setNumList] = useState([]);
   // 1. 랜덤 번호를 뽑아서 리스트화
