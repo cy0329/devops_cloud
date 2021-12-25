@@ -8,7 +8,7 @@ function LottoNum3() {
   const lottoNumber3 = () => {
     let lottoSet = new Set();
     while (lottoSet.size < 7) {
-      let num = Math.floor(Math.random() * 44) + 1;
+      let num = Math.floor(Math.random() * 45) + 1;
       lottoSet.add(num);
     }
     let RNList = Array.from(lottoSet);

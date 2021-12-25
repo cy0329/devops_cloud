@@ -1,11 +1,12 @@
-import Playlist from 'components/Playlist';
+import Player from 'components/Playlist';
 
-function PageCounter() {
+function PagePlaylist() {
   return (
     <>
       <h2>Play List</h2>
+      <Player />
     </>
   );
 }
 
-export default PageCounter;
+export default PagePlaylist;

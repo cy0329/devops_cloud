@@ -1,15 +1,9 @@
-import React from 'react';
-import ReactPlayer from 'react-player';
-import { List, Avatar } from 'antd';
-import { useState } from 'react';
-
-function Player() {
-  const video_list = [
+[
     {
-      title: '한국 급식을 처음 먹어본 영국 중학생들의 반응!?',
-      youtube_id: 'https://www.youtube.com/watch?v=nxrgOqNzBcg',
-      thumbnail_url:
-        'https://i.ytimg.com/vi/nxrgOqNzBcg/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD5ZvUJGBb5ZCobrPA6O-umfxSV5A',
+      "title": "한국 급식을 처음 먹어본 영국 중학생들의 반응!?",
+      "youtube_id": "https://www.youtube.com/watch?v=nxrgOqNzBcg",
+      "thumbnail_url":
+        "https://i.ytimg.com/vi/nxrgOqNzBcg/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD5ZvUJGBb5ZCobrPA6O-umfxSV5A"
     },
     {
       title: '한국 분식을 처음 먹어본 영국 고등학생들의 반응?!',
@@ -38,33 +32,3 @@ function Player() {
         'https://i.ytimg.com/vi/0Pu--Gf98xY/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDK0FhChfj7jAejB-d8JUixxKciow',
     },
   ];
-  // TODO: 리스트 형식으로 만들고 클릭 시 그 영상이 보여지도록
-
-  const [youtubeUrl, setYoutubeUrl] = useState('');
-
-  return (
-    <div>
-      <table>
-        <tr>
-          <td colspan={10}>
-            {video_list.map((video) => (
-              <div
-                onClick={() => {
-                  setYoutubeUrl(video.youtube_id);
-                }}
-                onMouseOver="this.style.cursor='hand'"
-              >
-                <h3>{video.title}</h3>
-                <img src={video.thumbnail_url} />
-              </div>
-            ))}
-          </td>
-          <td colSpan={20}>
-            <ReactPlayer url={youtubeUrl} />
-          </td>
-        </tr>
-      </table>
-    </div>
-  );
-}
-export default Player;
