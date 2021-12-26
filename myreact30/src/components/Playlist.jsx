@@ -2,6 +2,7 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import { Layout, List, Avatar } from 'antd';
 import { useState } from 'react';
+// import './Playlist.css';
 
 function Player() {
   const video_list = [
@@ -71,7 +72,7 @@ function Player() {
   // TODO: 리스트 형식으로 만들고 클릭 시 그 영상이 보여지도록
 
   const [youtubeUrl, setYoutubeUrl] = useState('');
-
+  const [title, setTitle] = useState('');
   const { Sider, Footer, Content } = Layout;
 
   return (
@@ -80,12 +81,14 @@ function Player() {
         <Layout style={{ marginLeft: 200 }}>
           <Content style={{ overflow: 'auto', height: '80vh', padding: 100 }}>
             <div>
+              <h2>
+                <strong>{title}</strong>
+              </h2>
               <ReactPlayer url={youtubeUrl} />
             </div>
           </Content>
 
           <Sider
-            class="scroller"
             style={{
               overflow: 'auto',
               height: '80vh',
@@ -101,10 +104,11 @@ function Player() {
               dataSource={video_list}
               renderItem={(video) => (
                 <List.Item
-                  bordered={true}
-                  onClick={() => setYoutubeUrl(video.youtube_id)}
+                  onClick={() => (
+                    setYoutubeUrl(video.youtube_id), setTitle(video.title)
+                  )}
                 >
-                  <img src={video.thumbnail_url} alt={video.title}/>
+                  <img src={video.thumbnail_url} alt={video.title} />
                   <List.Item.Meta title={<h4>{video.title}</h4>} />
                 </List.Item>
               )}
