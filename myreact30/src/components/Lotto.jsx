@@ -38,16 +38,4 @@ function LottoNum({ color }) {
   );
 }
 
-const style = {
-  width: '100px',
-  height: '100px',
-  borderRadius: '50px',
-  lineHeight: '100px',
-  textAlign: 'center',
-  display: 'inline-block',
-  fontSize: '3rem',
-  margin: '1rem',
-  userSelect: 'none',
-};
-
 export default LottoNum;

@@ -78,8 +78,8 @@ function Player() {
     <>
       <Layout>
         <Layout style={{ marginLeft: 200 }}>
-          <Content style={{ overflow: 'auto', height: '80vh' }}>
-            <div style={{ padding: 100 }}>
+          <Content style={{ overflow: 'auto', height: '80vh', padding: 100 }}>
+            <div>
               <ReactPlayer url={youtubeUrl} />
             </div>
           </Content>
@@ -104,7 +104,7 @@ function Player() {
                   bordered={true}
                   onClick={() => setYoutubeUrl(video.youtube_id)}
                 >
-                  <img src={video.thumbnail_url} />
+                  <img src={video.thumbnail_url} alt={video.title}/>
                   <List.Item.Meta title={<h4>{video.title}</h4>} />
                 </List.Item>
               )}

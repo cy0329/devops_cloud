@@ -75,24 +75,23 @@ function Player2() {
   return (
     <>
       <table>
-        {video_list.map((video) => (
-          <tr>
+        <tr>
+          {video_list.map((video) => (
             <td>
               <div
                 onClick={() => {
                   setYoutubeUrl(video.youtube_id);
                 }}
-                onMouseOver="this.style.cursor='hand'"
               >
                 <img src={video.thumbnail_url} />
                 <h3>{video.title}</h3>
               </div>
             </td>
-          </tr>
-        ))}
-        <td>
-          <ReactPlayer url={youtubeUrl} />
-        </td>
+          ))}
+          <td colSpan={10}>
+            <ReactPlayer url={youtubeUrl} />
+          </td>
+        </tr>
       </table>
     </>
   );
