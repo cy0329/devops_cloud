@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Julia",
+    "role": "UI/UX Developer",
+    "facebook_url": "facebook.com/juliafb1",
+    "email": "juuulia@naver.com"
+  },
+  {
+    "name": "Romanov",
+    "role": "GUI Designer",
+    "facebook_url": "facebook.com/romav",
+    "email": "rooomanv@naver.com"
+  },
+  {
+    "name": "Tom",
+    "role": "3D Graphic Designer",
+    "facebook_url": "facebook.com/tommy_79",
+    "email": "ttoommy@naver.com"
+  },
+  {
+    "name": "Jackson",
+    "role": "CPU Builder",
+    "facebook_url": "facebook.com/jackson",
+    "email": "jksn123@naver.com"
+  }
+]
