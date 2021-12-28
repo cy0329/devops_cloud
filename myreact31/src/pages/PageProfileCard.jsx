@@ -8,14 +8,13 @@ import {
   faStickyNote,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-import { Children } from "react/cjs/react.production.min";
 
 function ProfileCard({
   name,
   role,
-  facebook_url,
-  email,
-  profileImage,
+  mbti,
+  instagram_url,
+  profile_image_url,
   children,
 }) {
   return (
@@ -29,7 +28,7 @@ function ProfileCard({
         </a>
       </nav>
       <article className="profile">
-        <img src={profileImage} alt="프로필 이미지" />
+        <img src={profile_image_url} alt="프로필 이미지" />
 
         <h1>{name}</h1>
         <h2>{role}</h2>
@@ -40,11 +39,11 @@ function ProfileCard({
         <ul className="contact">
           <li>
             <FontAwesomeIcon icon={faFacebook} />
-            <span>{facebook_url}</span>
+            <span>{instagram_url}</span>
           </li>
           <li>
             <FontAwesomeIcon icon={faEnvelope} />
-            <span>{email}</span>
+            <span>{mbti}</span>
           </li>
         </ul>
       </article>

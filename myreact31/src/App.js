@@ -1,32 +1,50 @@
-import { useState } from "react";
 import "./App.css";
 import PageLotto from "./pages/PageLotto";
 import ProfileCard from "./pages/PageProfileCard";
-// import mem1 from "./img/member1.jpg";
-// import mem2 from "./img/member2.jpg";
-// import mem3 from "./img/member3.jpg";
-// import mem4 from "./img/member4.jpg";
-import members from "./data/profiles.json";
+// import members from "./data/profiles.json"; // 이건 local 파일 사용
+import Axios from "axios";
+
+const { useState, useEffect } = require("react");
 
 function App() {
-  // PageProfileCard 에서 인자로써 받아서 버튼으로...?
-  const [pageName, setPageName] = useState(members[0].name);
+  const [profileList, setProfileList] = useState([]);
+
+  useEffect(() => {
+    Axios.get(
+      "https://classdevopscloud.blob.core.windows.net/data/profile-list.json"
+    )
+      .then((response) => {
+        // reponse는 axios 객체
+        // response.data => 응답 내용
+        setProfileList(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  const [pageName, setPageName] = useState(profileList[0].name);
+
   return (
     <>
       <h2>리액트 학습</h2>
       <div className="lotto">
         <PageLotto />
       </div>
-      {members.map((member, index) => {
+      {profileList.map((member, index) => {
         if (pageName === member.name) {
           return (
             <div className={`m${index % 4}`}>
               <ProfileCard
                 {...member}
-                profileImage={`/profile-image/member${index + 1}.jpg`}
+                // name={member.name}
+                // role={member.role}
+                // mbti={member.mbti}
+                // instagram_url={member.instagram_url}
+                // profile_image_url={member.profile_image_url}
               >
                 <nav>
-                  {members.map((member) => {
+                  {profileList.map((member) => {
                     return (
                       <a
                         className={pageName == member.name ? "on" : ""}
