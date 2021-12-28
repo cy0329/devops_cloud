@@ -1,7 +1,14 @@
-import { useState } from "react";
 import "./PageProfileCard.css";
 // import mem1jpg from "./img/member1.jpg";
 // import "../data/profiles.json";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import {
+  faBars,
+  faStickyNote,
+  faEnvelope,
+} from "@fortawesome/free-solid-svg-icons";
+import { Children } from "react/cjs/react.production.min";
 
 function ProfileCard({
   name,
@@ -9,16 +16,16 @@ function ProfileCard({
   facebook_url,
   email,
   profileImage,
-  changePage,
+  children,
 }) {
   return (
     <section>
       <nav className="menu">
         <a href="#">
-          <i className="fas fa-bars"></i>
+          <FontAwesomeIcon icon={faBars} />
         </a>
         <a href="#">
-          <i className="far fa-sticky-note"></i>
+          <FontAwesomeIcon icon={faStickyNote} />
         </a>
       </nav>
       <article className="profile">
@@ -32,21 +39,16 @@ function ProfileCard({
         </a>
         <ul className="contact">
           <li>
-            <i className="fab fa-facebook-f"></i>
+            <FontAwesomeIcon icon={faFacebook} />
             <span>{facebook_url}</span>
           </li>
           <li>
-            <i className="fas fa-envelope"></i>
+            <FontAwesomeIcon icon={faEnvelope} />
             <span>{email}</span>
           </li>
         </ul>
       </article>
-      <nav className="others">
-        <a onClick={() => changePage("Julia")}></a>
-        <a onClick={() => changePage("Romanov")}></a>
-        <a onClick={() => changePage("Tom")}></a>
-        <a onClick={() => changePage("Jackson")}></a>
-      </nav>
+      <nav className="others">{children}</nav>
     </section>
   );
 }

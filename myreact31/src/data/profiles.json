@@ -22,5 +22,35 @@
     "role": "CPU Builder",
     "facebook_url": "facebook.com/jackson",
     "email": "jksn123@naver.com"
+  },
+  {
+    "name": "권하은",
+    "role": "Newbie Developer",
+    "facebook_url": "facebook.com/haaenkk",
+    "email": "rnjsgkdms123@naver.com"
+  },
+  {
+    "name": "김유나",
+    "role": "Newbie Developer",
+    "facebook_url": "facebook.com/uandikim",
+    "email": "rladbsk456@naver.com"
+  },
+  {
+    "name": "이준수",
+    "role": "Newbie Developer",
+    "facebook_url": "facebook.com/junsoolee",
+    "email": "ljsljs789@naver.com"
+  },
+  {
+    "name": "최열",
+    "role": "Newbie Developer/prev.Youtuber",
+    "facebook_url": "facebook.com/chlduf153",
+    "email": "chlduf153@naver.com"
+  },
+  {
+    "name": "허성우",
+    "role": "Newbie Developer",
+    "facebook_url": "facebook.com/heogend",
+    "email": "hswoo123@naver.com"
   }
 ]
