@@ -23,7 +23,7 @@ function App() {
       });
   }, []);
 
-  const [pageName, setPageName] = useState(profileList[0].name);
+  const [pageName, setPageName] = useState("진");
 
   return (
     <>
