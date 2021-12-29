@@ -2,7 +2,7 @@ import "./PageProfileCard.css";
 // import mem1jpg from "./img/member1.jpg";
 // import "../data/profiles.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook } from "@fortawesome/free-brands-svg-icons";
+import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import {
   faBars,
   faStickyNote,
@@ -38,12 +38,11 @@ function ProfileCard({
         </a>
         <ul className="contact">
           <li>
-            <FontAwesomeIcon icon={faFacebook} />
+            <FontAwesomeIcon icon={faInstagram} />
             <span>{instagram_url}</span>
           </li>
           <li>
-            <FontAwesomeIcon icon={faEnvelope} />
-            <span>{mbti}</span>
+            <span>MBTI : {mbti}</span>
           </li>
         </ul>
       </article>
