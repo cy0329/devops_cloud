@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 function PageProfile() {
   const [pageList, setPageList] = useState([]);
-  useEffect(() => {
+  const handleRefresh = () =>
     Axios.get(
       'https://classdevopscloud.blob.core.windows.net/data/profile-list.json',
     )
@@ -16,13 +16,14 @@ function PageProfile() {
         setPageList(profileList);
       })
       .catch((error) => console.error(error));
-  }, []);
+
+  useEffect(() => handleRefresh(), []);
 
   return (
     <div>
       <h2>Page Profile</h2>
       <button onClick={() => setPageList([])}>clear</button>
-      <button onClick={}>refresh</button>
+      <button onClick={handleRefresh}>refresh</button>
       {pageList.length === 0 && <h4>등록된 프로필이 없습니다.</h4>}
       {pageList.map((member) => (
         <>
