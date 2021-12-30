@@ -4,6 +4,8 @@ import Axios from 'axios';
 function PageProfile() {
   const [pageList, setPageList] = useState([]);
   const [errorObject, setErrorObject] = useState(null);
+  const [query, setQuery] = useState('');
+
   const handleRefresh = () => {
     setErrorObject(null);
     Axios.get(
@@ -22,8 +24,6 @@ function PageProfile() {
   };
 
   useEffect(() => handleRefresh(), []);
-
-  const [query, setQuery] = useState('');
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -56,13 +56,17 @@ function PageProfile() {
       )}
       {pageList.length === 0 && <h4>등록된 프로필이 없습니다.</h4>}
       {pageList
-        .filter(
-          (member) =>
-            member.name.includes(query) ||
-            member.role.includes(query) ||
-            member.mbti.includes(query) ||
-            query == '',
-        )
+        .filter((member) => {
+          if (query.length === 0) {
+            return true;
+          }
+          const pattern = new RegExp(query, 'i');
+          const queryTarget = [member.name, member.role, member.mbti];
+          return pattern.test(queryTarget);
+          // member.name.toUpperCase().includes(query.toUpperCase()) ||
+          // member.role.toUpperCase().includes(query.toUpperCase()) ||
+          // member.mbti.toUpperCase().includes(query.toUpperCase())   // 간지가 안남
+        })
         .map((member) => (
           <div key={member.uniqueID}>
             <h3>{member.name}</h3>
