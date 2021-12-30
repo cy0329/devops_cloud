@@ -38,6 +38,7 @@ function PageProfile() {
       setQuery(value);
     }
   };
+
   const orgProfile = pageList.filter((member) => {
     if (query.length === 0) {
       return true;
