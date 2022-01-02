@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Julia",
+    "role": "UI/UX Designer",
+    "facebookUrl": "facebook.com/juuul",
+    "email": "julia123@naver.com"
+  },
+  {
+    "name": "Anna",
+    "role": "Actress",
+    "facebookUrl": "facebook.com/AAAnna",
+    "email": "annanna123@naver.com"
+  },
+  {
+    "name": "Jack",
+    "role": "Scientist",
+    "facebookUrl": "facebook.com/jtslover",
+    "email": "jackck123@naver.com"
+  },
+  {
+    "name": "Tom",
+    "role": "Climber",
+    "facebookUrl": "facebook.com/ttoommyy",
+    "email": "tomtong00@naver.com"
+  }
+]
