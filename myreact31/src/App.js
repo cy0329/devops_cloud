@@ -1,17 +1,17 @@
-import "./App.css";
-import PageLotto from "./pages/PageLotto";
-import ProfileCard from "./pages/PageProfileCard";
+import './App.css';
+import PageLotto from './pages/PageLotto';
+import ProfileCard from './pages/PageProfileCard';
 // import members from "./data/profiles.json"; // 이건 local 파일 사용
-import Axios from "axios";
+import Axios from 'axios';
 
-const { useState, useEffect } = require("react");
+const { useState, useEffect } = require('react');
 
 function App() {
   const [profileList, setProfileList] = useState([]);
 
   useEffect(() => {
     Axios.get(
-      "https://classdevopscloud.blob.core.windows.net/data/profile-list.json"
+      'https://classdevopscloud.blob.core.windows.net/data/profile-list.json',
     )
       .then((response) => {
         // reponse는 axios 객체
@@ -23,7 +23,7 @@ function App() {
       });
   }, []);
 
-  const [pageName, setPageName] = useState("진");
+  const [pageName, setPageName] = useState('진');
 
   return (
     <>
@@ -47,7 +47,7 @@ function App() {
                   {profileList.map((member) => {
                     return (
                       <a
-                        className={pageName == member.name ? "on" : ""}
+                        className={pageName == member.name ? 'on' : ''}
                         onClick={() => setPageName(member.name)}
                       ></a>
                     );
