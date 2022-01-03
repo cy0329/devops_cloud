@@ -65,14 +65,7 @@ function PageProfile() {
         <h3>조회시에 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.</h3>
       )}
 
-      <ProfileList
-        orgProfile={orgProfile}
-        handleChange={handleChange}
-        handleKeyPress={handleKeyPress}
-        handleRefresh={handleRefresh}
-        query={query}
-        pageList={pageList}
-      />
+      <ProfileList orgProfile={orgProfile} />
     </>
   );
 }
