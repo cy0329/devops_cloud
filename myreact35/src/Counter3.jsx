@@ -1,11 +1,9 @@
-const { useState } = require('react/cjs/react.development');
+const { useState, useReducer } = require('react/cjs/react.development');
 
-function reducer(action, prevState) {
+function reducer(prevState, action) {
   const { type, amount, color } = action;
-  if (type === 'PLUS') {
+  if (type === 'COUNT') {
     return { ...prevState, value: prevState.value + amount };
-  } else if (type === 'MINUS') {
-    return { ...prevState, value: prevState.value - amount };
   } else if (type === 'CHANGE_COLOR') {
     return { ...prevState, color };
   }
@@ -16,32 +14,32 @@ function Counter3() {
   //   const [value, setValue] = useState(0);
   //   const [color, setColor] = useState('red');
   //   const { value, color } = state;
-  const [state, setState] = useState({ value: 0, color: 'red' });
   //   const [state, setState] = useState({ value: 0, color: 'red' });
+  const [state, dispatch] = useReducer(reducer, { value: 0, color: 'red' });
 
   const handlePlus = () => {
-    const action = { type: 'PLUS', amount: 1 };
-    setState((prevState) => reducer(action, prevState));
+    // const action = { type: 'PLUS', amount: 1 };
+    dispatch({ type: 'COUNT', amount: 1 });
   };
 
   const handleMinus = () => {
-    const action = { type: 'MINUS', amount: 1 };
-    setState((prevState) => reducer(action, prevState));
+    // const action = { type: 'MINUS', amount: 1 };
+    dispatch({ type: 'COUNT', amount: -1 });
   };
 
   const changeRed = () => {
-    const action = { type: 'CHANGE_COLOR', color: 'red' };
-    setState((prevState) => reducer(action, prevState));
+    // const action = { type: 'CHANGE_COLOR', color: 'red' };
+    dispatch({ type: 'CHANGE_COLOR', color: 'red' });
   };
 
   const changeGreen = () => {
-    const action = { type: 'CHANGE_COLOR', color: 'green' };
-    setState((prevState) => reducer(action, prevState));
+    // const action = { type: 'CHANGE_COLOR', color: 'green' };
+    dispatch({ type: 'CHANGE_COLOR', color: 'green' });
   };
 
   const changeBlue = () => {
-    const action = { type: 'CHANGE_COLOR', color: 'blue' };
-    setState((prevState) => reducer(action, prevState));
+    // const action = { type: 'CHANGE_COLOR', color: 'blue' };
+    dispatch({ type: 'CHANGE_COLOR', color: 'blue' });
   };
 
   return (
