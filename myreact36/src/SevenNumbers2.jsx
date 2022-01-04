@@ -24,6 +24,14 @@ const get_lotto_numbers = () =>
     .slice(0, 7)
     .sort((number1, number2) => number1 - number2);
 
+const get_ball_colors = () => {
+  const ballColors = new Array();
+  while (ballColors.length < 7) {
+    ballColors.push('#' + Math.round(Math.random() * 0xffffff).toString(16));
+  }
+  return ballColors;
+};
+
 const ACTION_TYPES = {
   GENERATE_NUMBERS: 'GENERATE_NUMBERS',
   SHUFFLE_NUMBERS: 'SHUFFLE_NUMBERS',
@@ -42,9 +50,7 @@ function reducer(prevState, action) {
     return {
       // ...prevState,
       numbers: get_lotto_numbers(),
-      colors: prevState.colors.map(
-        (color) => '#' + Math.round(Math.random() * 0xffffff).toString(16),
-      ),
+      colors: get_ball_colors(),
     };
   } else if (type === ACTION_TYPES.SHUFFLE_NUMBERS) {
     return {
@@ -67,12 +73,21 @@ function reducer(prevState, action) {
       }),
     };
   } else if (type === ACTION_TYPES.DELETE_CIRCLE) {
+    const ballList = zip(prevState.numbers, prevState.colors).filter(
+      ([number, color], index) => index !== action.index,
+    );
+    const numList = ballList.map(([number, color]) => number);
+    const colList = ballList.map(([number, color]) => color);
     return {
-      numbers: prevState.numbers.filter(
-        (number, index) => index !== action.index,
-      ),
-      colors: prevState.colors.filter((color, index) => index !== action.index),
+      numbers: numList,
+      colors: colList,
     };
+    // return {
+    //   numbers: prevState.numbers.filter(
+    //     (number, index) => index !== action.index,
+    //   ),
+    //   colors: prevState.colors.filter((color, index) => index !== action.index),
+    // };
   }
 
   return prevState;
