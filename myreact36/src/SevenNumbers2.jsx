@@ -38,6 +38,7 @@ const ACTION_TYPES = {
   SHUFFLE_COLORS: 'SHUFFLE_COLORS',
   CHANGE_COLOR: 'CHANGE_COLOR',
   DELETE_CIRCLE: 'DELETE_CIRCLE',
+  CLEAR_ALL: 'CLEAR_ALL',
 };
 
 // 순수 함수
@@ -88,6 +89,11 @@ function reducer(prevState, action) {
     //   ),
     //   colors: prevState.colors.filter((color, index) => index !== action.index),
     // };
+  } else if (type === ACTION_TYPES.CLEAR_ALL) {
+    return {
+      numbers: [],
+      colors: [],
+    };
   }
 
   return prevState;
@@ -128,6 +134,11 @@ function SevenNumbers2({ title }) {
     dispatch(action);
   };
 
+  const clearAll = () => {
+    const action = { type: ACTION_TYPES.CLEAR_ALL };
+    dispatch(action);
+  };
+
   return (
     <div>
       {title && <h2>{title}</h2>}
@@ -146,6 +157,7 @@ function SevenNumbers2({ title }) {
       <button onClick={generateNumbers}>공 뽑기</button>
       <button onClick={shuffleNumbers}>숫자만 섞기</button>
       <button onClick={shuffleColors}>색깔만 섞기</button>
+      <button onClick={clearAll}>초기화</button>
       <hr />
       <pre>{JSON.stringify(state, null, 4)}</pre>
     </div>
