@@ -1,13 +1,18 @@
 import { useReducer } from 'react';
 
 function lottoNum() {
-  const numSet = new Set();
-  while (numSet.size < 7) {
-    const randomNum = Math.floor(Math.random() * 45) + 1;
-    numSet.add(randomNum);
-  }
-  const numList = Array.from(numSet);
-  return numList;
+  return [...Array(45).keys()]
+    .map((index) => index + 1)
+    .sort(() => Math.random() - Math.random())
+    .slice(0, 7);
+
+  // const numSet = new Set();
+  // while (numSet.size < 7) {
+  //   const randomNum = Math.floor(Math.random() * 45) + 1;
+  //   numSet.add(randomNum);
+  // }
+  // const numList = Array.from(numSet);
+  // return numList;
 }
 
 function reducer(prevState, action) {
@@ -43,10 +48,11 @@ function SevenNumbers() {
   });
 
   const handleNum = () => {
-    dispatch({ type: 'GENERATE_NUMBERS' });
+    const action = { type: 'GENERATE_NUMBERS' };
+    dispatch(action); // 이렇게 써줘도 되고
   };
   const handleShuffle = () => {
-    dispatch({ type: 'SHUFFLE_NUMBERS ' });
+    dispatch({ type: 'SHUFFLE_NUMBERS ' }); // 이렇게 써줘도 되고
   };
   const handleColor = () => {
     dispatch({ type: 'SHUFFLE_COLORS ' });
