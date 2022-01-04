@@ -28,18 +28,23 @@ const ACTION_TYPES = {
   GENERATE_NUMBERS: 'GENERATE_NUMBERS',
   SHUFFLE_NUMBERS: 'SHUFFLE_NUMBERS',
   SHUFFLE_COLORS: 'SHUFFLE_COLORS',
+  CHANGE_COLOR: 'CHANGE_COLOR',
+  DELETE_CIRCLE: 'DELETE_CIRCLE',
 };
 
 // 순수 함수
 function reducer(prevState, action) {
   // 새로운 상탯값을 계산해서 리턴합니다.
 
-  const { type } = action;
+  const { type, index } = action;
 
   if (type === ACTION_TYPES.GENERATE_NUMBERS) {
     return {
-      ...prevState,
+      // ...prevState,
       numbers: get_lotto_numbers(),
+      colors: prevState.colors.map(
+        (color) => '#' + Math.round(Math.random() * 0xffffff).toString(16),
+      ),
     };
   } else if (type === ACTION_TYPES.SHUFFLE_NUMBERS) {
     return {
@@ -50,6 +55,23 @@ function reducer(prevState, action) {
     return {
       ...prevState,
       colors: shuffle_array(prevState.colors),
+    };
+  } else if (type === ACTION_TYPES.CHANGE_COLOR) {
+    return {
+      ...prevState,
+      colors: prevState.colors.map((color, index) => {
+        if (index === action.index) {
+          return '#' + Math.round(Math.random() * 0xffffff).toString(16);
+        }
+        return color;
+      }),
+    };
+  } else if (type === ACTION_TYPES.DELETE_CIRCLE) {
+    return {
+      numbers: prevState.numbers.filter(
+        (number, index) => index !== action.index,
+      ),
+      colors: prevState.colors.filter((color, index) => index !== action.index),
     };
   }
 
@@ -79,16 +101,36 @@ function SevenNumbers2({ title }) {
     dispatch(action);
   };
 
+  const changeColor = (circleIndex) => {
+    const action = { type: ACTION_TYPES.CHANGE_COLOR, index: circleIndex };
+    // setState((prevState) => reducer(prevState, action));
+    dispatch(action);
+  };
+
+  const removeCircle = (circleIndex) => {
+    const action = { type: ACTION_TYPES.DELETE_CIRCLE, index: circleIndex };
+    // setState((prevState) => reducer(prevState, action));
+    dispatch(action);
+  };
+
   return (
     <div>
       {title && <h2>{title}</h2>}
-      {zip(state.numbers, state.colors).map(([number, color]) => (
-        <Circle number={number} backgroundColor={color} />
+      {zip(state.numbers, state.colors).map(([number, color], index) => (
+        <Circle
+          number={number}
+          backgroundColor={color}
+          onClick={() => changeColor(index)}
+          onContextMenu={(e) => {
+            e.preventDefault();
+            removeCircle(index);
+          }}
+        />
       ))}
       <hr />
-      <button onClick={generateNumbers}>GENERATE_NUMBERS</button>
-      <button onClick={shuffleNumbers}>SHUFFLE_NUMBERS</button>
-      <button onClick={shuffleColors}>SHUFFLE_COLORS</button>
+      <button onClick={generateNumbers}>공 뽑기</button>
+      <button onClick={shuffleNumbers}>숫자만 섞기</button>
+      <button onClick={shuffleColors}>색깔만 섞기</button>
       <hr />
       <pre>{JSON.stringify(state, null, 4)}</pre>
     </div>

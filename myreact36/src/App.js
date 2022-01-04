@@ -1,8 +1,8 @@
-import SevenNumbers1 from 'SevenNumbers1';
+import SevenNumbers2 from 'SevenNumbers2';
 import './App.css';
 
 function App() {
-  return <SevenNumbers1 />;
+  return <SevenNumbers2 />;
 }
 
 export default App;
