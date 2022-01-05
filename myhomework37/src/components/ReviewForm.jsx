@@ -17,7 +17,7 @@ function ReviewForm({ fieldValues, handleChange, handleSubmit, handleBorF }) {
         <option>5</option>
       </select>
 
-      <hr />
+      <p />
 
       <h2 className="text-lg">리뷰</h2>
       <textarea
@@ -28,19 +28,19 @@ function ReviewForm({ fieldValues, handleChange, handleSubmit, handleBorF }) {
         value={fieldValues.content}
       />
 
-      <hr />
+      <p />
 
       <button
         onClick={() => {
           handleSubmit();
           handleBorF();
         }}
-        className="border-2 bg-blue-100 hover:bg-blue-400"
+        className="w-full border-2 bg-blue-100 hover:bg-blue-400 py-3 rounded-lg"
       >
         저장하기
       </button>
 
-      <hr />
+      <p />
     </div>
   );
 }
