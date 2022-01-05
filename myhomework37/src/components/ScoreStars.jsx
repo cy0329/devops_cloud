@@ -1,13 +1,13 @@
 function Stars({ score }) {
   return (
-    <ul class="flex">
+    <ul className="flex">
       <li>
         <svg
           aria-hidden="true"
           focusable="false"
           data-prefix={score >= 1 ? 'fas' : 'far'}
           data-icon="star"
-          class="w-4 text-yellow-500 mr-1"
+          className="w-4 text-yellow-500 mr-1"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"
@@ -28,7 +28,7 @@ function Stars({ score }) {
           focusable="false"
           data-prefix={score >= 2 ? 'fas' : 'far'}
           data-icon="star"
-          class="w-4 text-yellow-500 mr-1"
+          className="w-4 text-yellow-500 mr-1"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"
@@ -49,7 +49,7 @@ function Stars({ score }) {
           focusable="false"
           data-prefix={score >= 3 ? 'fas' : 'far'}
           data-icon="star"
-          class="w-4 text-yellow-500 mr-1"
+          className="w-4 text-yellow-500 mr-1"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"
@@ -70,7 +70,7 @@ function Stars({ score }) {
           focusable="false"
           data-prefix={score >= 4 ? 'fas' : 'far'}
           data-icon="star"
-          class="w-4 text-yellow-500 mr-1"
+          className="w-4 text-yellow-500 mr-1"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"
@@ -91,7 +91,7 @@ function Stars({ score }) {
           focusable="false"
           data-prefix={score == 5 ? 'fas' : 'far'}
           data-icon="star"
-          class="w-4 text-yellow-500"
+          className="w-4 text-yellow-500"
           role="img"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 576 512"

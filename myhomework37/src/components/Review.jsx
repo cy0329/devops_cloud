@@ -5,7 +5,9 @@ function Review({ review }) {
   return (
     <div className="m-1 p-1 rounded text-lg border-4">
       <Stars score={review.score} />
-      {review.content}
+      {review.content.split('\n').map((letter) => (
+        <p>{letter}</p>
+      ))}
     </div>
   );
 }

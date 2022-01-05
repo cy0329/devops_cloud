@@ -14,7 +14,7 @@ function ReviewList() {
   const [reviewList, setReviewList] = useState(INITIAL_STATE);
   const [fieldValues, handleChange, clearFieldvalues] = useFieldValues({
     content: '',
-    score: '0',
+    score: 0,
   });
 
   const appendReview = () => {
