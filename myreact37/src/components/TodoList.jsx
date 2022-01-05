@@ -5,16 +5,16 @@ import TodoForm from './TodoForm';
 import './TodoList.css';
 
 const INITIAL_STATE = [
-  { content: '좋은 몸 만들기', color: 'blue' },
-  { content: '파이썬 마스터', color: 'red' },
-  { content: '자바스크립트 마스터', color: 'red' },
+  { content: '좋은 몸 만들기', color: 'red' },
+  { content: '파이썬 마스터', color: 'orange' },
+  { content: '자바스크립트 마스터', color: 'yellow' },
 ];
 
 function TodoList() {
   const [todoList, setTodoList] = useState(INITIAL_STATE);
   const [fieldValues, handleChange, clearFieldvalues] = useFieldValues({
     content: '',
-    color: 'blue',
+    color: 'red',
   });
 
   const removeTodo = (todoIndex) => {

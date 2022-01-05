@@ -6,18 +6,24 @@ function TodoForm({ fieldValues, handleChange, handleSubmit }) {
   };
 
   return (
-    <div className="border-2 border-red-500 p-3">
+    <div className="border-2 border-gray-500 p-3 rounded">
       <h2 className="text-lg underline">TodoForm</h2>
 
       <select onChange={handleChange} name="color" value={fieldValues.color}>
-        <option>blue</option>
         <option>red</option>
-        {/* <option>yellow</option> */}
+        <option>orange</option>
+        <option>yellow</option>
+        <option>green</option>
+        <option>blue</option>
+        <option>navy</option>
+        <option>purple</option>
+        <option>pink</option>
+        <option>coral</option>
       </select>
 
       <input
         type="text"
-        className="border-2 border-gray-400"
+        className="border-2 border-gray-400 rounded"
         onChange={handleChange}
         name="content"
         value={fieldValues.content}
