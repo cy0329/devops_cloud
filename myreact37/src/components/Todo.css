@@ -1,0 +1,11 @@
+* {
+  transition: all 0.4s;
+}
+
+.todo {
+  background-color: rgb(207, 235, 245);
+}
+
+.todo:hover {
+  background-color: blue;
+}
