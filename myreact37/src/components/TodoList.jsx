@@ -14,7 +14,7 @@ function TodoList() {
   const [todoList, setTodoList] = useState(INITIAL_STATE);
   const [fieldValues, handleChange, clearFieldvalues] = useFieldValues({
     content: '',
-    color: 'orange',
+    color: 'blue',
   });
 
   const removeTodo = (todoIndex) => {
