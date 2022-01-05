@@ -5,22 +5,33 @@ import TodoForm from './TodoForm';
 import './TodoList.css';
 
 const INITIAL_STATE = [
-  { content: '좋은 몸 만들기' },
-  { content: '파이썬 마스터' },
-  { content: '자바스크립트 마스터' },
+  { content: '좋은 몸 만들기', color: 'blue' },
+  { content: '파이썬 마스터', color: 'red' },
+  { content: '자바스크립트 마스터', color: 'red' },
 ];
 
 function TodoList() {
   const [todoList, setTodoList] = useState(INITIAL_STATE);
   const [fieldValues, handleChange, clearFieldvalues] = useFieldValues({
     content: '',
-    color: 'Orange',
+    color: 'orange',
   });
 
   const removeTodo = (todoIndex) => {
     setTodoList((prevTodoList) =>
       prevTodoList.filter((_, index) => index !== todoIndex),
     );
+  };
+
+  const appendTodo = () => {
+    console.log('새로운 todo를 추가하겠습니다.');
+
+    const todo = { ...fieldValues };
+    // setter에 값 지정 방식
+    // setTodoList([...todoList, todo]);
+    //setter에 함수 지정 방식
+    setTodoList((prevTodoList) => [...prevTodoList, todo]);
+    clearFieldvalues();
   };
 
   //   const changedInputText = (e) => {
@@ -41,7 +52,11 @@ function TodoList() {
     <div className="todo-list">
       <h2>Todo List</h2>
 
-      <TodoForm handleChange={handleChange} fieldValues={fieldValues} />
+      <TodoForm
+        fieldValues={fieldValues}
+        handleChange={handleChange}
+        handleSubmit={appendTodo}
+      />
       <hr />
       {JSON.stringify(fieldValues)}
       <button
