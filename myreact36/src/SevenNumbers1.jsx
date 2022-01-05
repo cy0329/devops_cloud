@@ -63,10 +63,8 @@ function SevenNumbers1({ title }) {
 
   const removeCircle = (circleIndex) => {
     setState((prevState) => ({
-      numbers: prevState.numbers.filter(
-        (number, index) => index !== circleIndex,
-      ),
-      colors: prevState.colors.filter((color, index) => index !== circleIndex),
+      numbers: prevState.numbers.filter((_, index) => index !== circleIndex),
+      colors: prevState.colors.filter((_, index) => index !== circleIndex),
     }));
   };
 
