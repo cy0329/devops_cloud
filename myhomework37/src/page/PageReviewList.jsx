@@ -1,4 +1,4 @@
-import ReviewList from '../components/Reviews';
+import ReviewList from '../components/ReviewList';
 
 function PageReviewList() {
   return <ReviewList />;

@@ -1,8 +1,12 @@
-import PageReviewList from 'page/PageReviews';
+import PageReviewList from 'page/PageReviewList';
 import './App.css';
 
 function App() {
-  return <PageReviewList />;
+  return (
+    <>
+      <PageReviewList />
+    </>
+  );
 }
 
 export default App;
