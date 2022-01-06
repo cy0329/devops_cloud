@@ -18,12 +18,25 @@ function ReviewList() {
       score: 0,
     });
 
-  const appendReview = () => {
+  const saveReview = () => {
     // review는 데이터베이스에 저장하면 id를 할당해줍니다.
-    const reviewId = new Date().getTime();
-
-    const review = { ...fieldValues, id: reviewId };
-    setReviewList((prevReviewList) => [...prevReviewList, review]);
+    let { id: reviewId } = fieldValues;
+    if (!reviewId) {
+      reviewId = new Date().getTime();
+      const createdReview = { ...fieldValues, id: reviewId };
+      setReviewList((prevReviewList) => [...prevReviewList, createdReview]);
+    } else {
+      const editedReview = { ...fieldValues };
+      setReviewList((prevReviewList) =>
+        prevReviewList.map((review) => {
+          if (review.id == reviewId) {
+            return editedReview;
+          } else {
+            return review;
+          }
+        }),
+      );
+    }
     clearFieldvalues();
   };
 
@@ -44,11 +57,6 @@ function ReviewList() {
     handleBorF();
   };
 
-  const saveEdit = () => {
-    const editedReview = { ...fieldValues };
-    // Todo: ...
-  };
-
   const [borf, setBorf] = useState('b');
   const handleBorF = () => {
     setBorf(() => {
@@ -66,7 +74,10 @@ function ReviewList() {
       <h2 className="text-lg">Review List</h2>
       <hr className="mb-2 border-2 border-orange-400" />
       {borf === 'b' && (
-        <button onClick={handleBorF} className="block w-full border py-4">
+        <button
+          onClick={() => handleBorF()}
+          className="block w-full border py-4"
+        >
           리뷰 작성
         </button>
       )}
@@ -74,7 +85,7 @@ function ReviewList() {
         <ReviewForm
           fieldValues={fieldValues}
           handleChange={handleChange}
-          handleSubmit={appendReview}
+          handleSubmit={saveReview}
           handleBorF={handleBorF}
         />
       )}
