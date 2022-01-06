@@ -1,7 +1,7 @@
 function Stars2({ score }) {
   const array = (size) => [...Array(size).keys()];
   return (
-    <ul class="flex justify-center">
+    <ul class="flex">
       {array(5).map((number) => {
         if (number < score) {
           return (

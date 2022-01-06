@@ -5,9 +5,9 @@ import ReviewForm from './ReviewForm';
 import './ReviewList.css';
 
 const INITIAL_STATE = [
-  { content: '재밌어요~', score: 4 },
-  { content: '스파이더맨 중 역대급', score: 5 },
-  { content: '진짜 전설의 레전드', score: 5 },
+  { id: 1, content: '재밌어요~', score: 4 },
+  { id: 2, content: '스파이더맨 중 역대급', score: 5 },
+  { id: 3, content: '진짜 전설의 레전드', score: 5 },
 ];
 
 function ReviewList() {
@@ -18,12 +18,10 @@ function ReviewList() {
   });
 
   const appendReview = () => {
-    console.log('새로운 todo를 추가하겠습니다.');
+    // review는 데이터베이스에 저장하면 id를 할당해줍니다.
+    const reviewId = new Date().getTime();
 
-    const review = { ...fieldValues };
-    // setter에 값 지정 방식
-    // setTodoList([...todoList, todo]);
-    // setter에 함수 지정 방식
+    const review = { ...fieldValues, id: reviewId };
     setReviewList((prevReviewList) => [...prevReviewList, review]);
     clearFieldvalues();
   };
