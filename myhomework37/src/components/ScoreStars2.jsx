@@ -1,7 +1,7 @@
 function Stars2({ score }) {
   const array = (size) => [...Array(size).keys()];
   return (
-    <ul class="flex">
+    <ul className="flex">
       {array(5).map((number) => {
         if (number < score) {
           return (
@@ -30,7 +30,7 @@ function Filled() {
       focusable="false"
       data-prefix="fas"
       data-icon="star"
-      class="w-4 text-yellow-500 mr-1"
+      className="w-4 text-yellow-500 mr-1"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"
@@ -50,7 +50,7 @@ function Empty() {
       focusable="false"
       data-prefix="far"
       data-icon="star"
-      class="w-4 text-yellow-500 mr-1"
+      className="w-4 text-yellow-500 mr-1"
       role="img"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 576 512"

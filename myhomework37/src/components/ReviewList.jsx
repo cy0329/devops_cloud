@@ -12,10 +12,11 @@ const INITIAL_STATE = [
 
 function ReviewList() {
   const [reviewList, setReviewList] = useState(INITIAL_STATE);
-  const [fieldValues, handleChange, clearFieldvalues] = useFieldValues({
-    content: '',
-    score: 0,
-  });
+  const [fieldValues, handleChange, clearFieldvalues, setFieldValues] =
+    useFieldValues({
+      content: '',
+      score: 0,
+    });
 
   const appendReview = () => {
     // review는 데이터베이스에 저장하면 id를 할당해줍니다.
@@ -24,6 +25,28 @@ function ReviewList() {
     const review = { ...fieldValues, id: reviewId };
     setReviewList((prevReviewList) => [...prevReviewList, review]);
     clearFieldvalues();
+  };
+
+  const deleteReview = (deletingReview) => {
+    // TODO: reviewList 배열 상탯값에서 deletingReview에 해당하는 리뷰를 제거
+    setReviewList((prevReviewList) =>
+      prevReviewList.filter(
+        ({ id: reviewId }) => reviewId !== deletingReview.id,
+      ),
+    );
+  };
+
+  const editReview = (editingReview) => {
+    console.log('Editing', editingReview);
+    // 방법: FieldValues를 클릭한 review의 값으로 변경 후 폼을 열어준다.
+    //  - 저장시 그 FieldValues를 클릭한 review에 저장
+    setFieldValues(editingReview);
+    handleBorF();
+  };
+
+  const saveEdit = () => {
+    const editedReview = { ...fieldValues };
+    // Todo: ...
   };
 
   const [borf, setBorf] = useState('b');
@@ -59,7 +82,12 @@ function ReviewList() {
       <hr />
 
       {reviewList.map((review) => (
-        <Review review={review} />
+        <Review
+          key={review.id}
+          review={review}
+          handleEdit={() => editReview(review)}
+          handleDelete={() => deleteReview(review)}
+        />
       ))}
       {JSON.stringify(fieldValues)}
       <button
